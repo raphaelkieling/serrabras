@@ -3,6 +3,9 @@
 </head>
 <body>
 	<div class="container">
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum veniam quidem assumenda sint illum totam ex pariatur. Quod quo assumenda officia ipsa rem earum natus perspiciatis, odit, blanditiis fuga mollitia!</p>
+		<h4>Dashboard</h4>
+		<div class="alert alert-warning">
+			<b>Dashboard</b> sendo implementada...
+		</div>
 	</div>
 </body>

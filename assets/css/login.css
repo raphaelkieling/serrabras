@@ -1,9 +1,11 @@
 .btn-primary{
     background-color:#ffbd4a !important;
-    border-color: #ffbd4a !important;
+    border:none;
+    box-shadow: none;
 }
 .jumbotron{
     background-color: #f1f1f1 !important;
+    padding: 10px;
 }
 .jumbotron img{
     margin:0 auto !important;

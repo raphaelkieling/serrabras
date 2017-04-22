@@ -38,11 +38,11 @@
             <div class="collapse navbar-collapse" id="collapse-navbar">
                 <ul class="nav navbar-nav">
                     <?php if($user['permissao']>=$user_permission){?>
-                    <li><a href="#" class=""><span class="glyphicon glyphicon-signal"></span> Dashboard</a></li>
+                    <li><a href="<?=base_url()?>dashboard" class=""><span class="glyphicon glyphicon-signal"></span> Dashboard</a></li>
                     <?php } ?>
-                    <li><a href="#" class=""><span class="glyphicon glyphicon-calendar"></span> Agendamento</a></li>
+                    <li><a href="<?=base_url()?>agendamento" class=""><span class="glyphicon glyphicon-calendar"></span> Agendamento</a></li>
                     <?php if($user['permissao']>=$user_permission){?>
-                    <li><a href="#" class=""><span class="glyphicon glyphicon-map-marker"></span> Locais</a></li>
+                    <li><a href="<?=base_url()?>locais" class=""><span class="glyphicon glyphicon-map-marker"></span> Locais</a></li>
                     <li><a href="#" class=""><span class="glyphicon glyphicon-tree-conifer"></span> Medidas</a></li>
                     <?php } ?>
                     <li><a href="#" class=""><span class="glyphicon glyphicon-bell"></span> Notificações <span class="badge">3</span></a></li>     
@@ -55,7 +55,7 @@
                     <div class="dropdown">
 
                         <button class="navbar-btn btn dropdown-toggle btn-clear" type="button" id="dropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <img src="<?=base_url()?>assets/img/foto.jpeg" style="width:30px;height:30px;border-radius:50%;">
+                            <img src="<?=base_url()?>assets/img/user_photo/<?=$user['foto_perfil']?>" style="width:30px;height:30px;border-radius:50%;">
                              Olá <b><?=$user['email']?></b>
                         </button>
                         

@@ -21,8 +21,12 @@
                     if($this->session->flashdata('message')){
                         echo "<div class='alert alert-danger'>".$this->session->flashdata('message')."</div>";
                     }
+                    if($this->session->flashdata('message-success')){
+                        echo "<div class='alert alert-success'>".$this->session->flashdata('message-success')."</div>";
+                    }
                 ?>
                 <div class="jumbotron">
+                    <br>
                     <img class="img-responsive" src="<?=base_url()?>assets/img/logo.png" alt="Logo da Serrabras">
                     <br>
                     <?= form_open('/login');?>
@@ -47,7 +51,7 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                Ainda não tem uma conta? <a href="#">CADASTRE-SE</a>
+                Ainda não tem uma conta? <a href="<?=base_url()?>cadastrar">CADASTRE-SE</a>
             </div>
             <div class="col-md-4"></div>
         </div>
