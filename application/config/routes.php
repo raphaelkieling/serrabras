@@ -18,6 +18,4 @@ $route['locais/cadastro'] = 'C_locais/cadastro';
 $route['locais/pegalocais'] = 'C_locais/pegaLocais';
 $route['locais/deleta/(:num)'] = 'C_locais/deleta/$1';
 
-
-
 $route['agendamento'] = 'C_agendamento/index';

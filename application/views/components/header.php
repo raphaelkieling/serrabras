@@ -9,6 +9,7 @@
 	<link href="<?=base_url()?>assets/css/animate.min.css" rel="stylesheet" />
 	<link href="<?=base_url()?>assets/css/font-awesome.min.css" rel="stylesheet" />
     <link href="<?=base_url()?>assets/css/header.css" rel="stylesheet" />
+    <link href="<?=base_url()?>assets/css/button.css" rel="stylesheet">
 
     <script src="<?=base_url()?>assets/js/jquery-3.2.1.min.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>

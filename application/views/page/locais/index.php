@@ -75,20 +75,22 @@
 		</div>
 
 		<div class="col-md-8">
-			<table class="table table-stripped">
-				<thead>
-					<tr>
-						<td>Id</td>
-						<td>Local</td>
-						<td>Início</td>
-						<td>Término</td>
-						<td>Ações</td>
-					</tr>
-				</thead>
-				<tbody>
-					
-				</tbody>
-			</table>
+			<div class="table-responsive">
+				<table class="table table-stripped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Local</th>
+							<th>Início</hd>
+							<th>Término</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Aqui fica o ajax -->
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
