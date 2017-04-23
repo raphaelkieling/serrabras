@@ -12,4 +12,36 @@ class C_locais extends CI_Controller {
         $this->load->view('components/header');
         $this->load->view('page/locais/index');
     }
+    function cadastro(){
+    	$nome = $this->input->post('nome');
+    	$h_i = $this->input->post('horario_inicial');
+    	$h_f = $this->input->post('horario_final');
+
+    	$this->load->model('M_locais');
+    	$data = $this->M_locais->cadastro($nome,$h_i,$h_f);
+    	
+        if($data){
+            echo true;
+        }else{
+            echo false;
+        }
+    }
+    function pegaLocais(){
+        $this->load->model('M_locais');
+    	$data = $this->M_locais->pegaLocais();
+
+        header('Content-type:application/json');
+        echo json_encode($data);
+    }
+    
+    function deleta($id){
+        $this->load->model('M_locais');
+    	$data = $this->M_locais->deleta($id);
+
+        if($data){
+            echo true;
+        }else{
+            echo false;
+        }
+    }
 }

@@ -14,5 +14,10 @@ $route['cadastrarinfo'] = 'C_login/cadastrarInfo';
 $route['dashboard'] = 'C_dashboard/index';
 
 $route['locais'] = 'C_locais/index';
+$route['locais/cadastro'] = 'C_locais/cadastro';
+$route['locais/pegalocais'] = 'C_locais/pegaLocais';
+$route['locais/deleta/(:num)'] = 'C_locais/deleta/$1';
+
+
 
 $route['agendamento'] = 'C_agendamento/index';
