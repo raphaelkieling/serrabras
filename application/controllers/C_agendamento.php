@@ -50,10 +50,8 @@ class C_agendamento extends CI_Controller {
     
         if($data){
             $this->session->set_flashdata('message-success','Tudo ocorreu como esperado');
-            echo "deu";
         }else{
             $this->session->set_flashdata('message','Algo deu errado...');
-            echo "nao deu";
         }
         redirect('/agendamento');
     }
