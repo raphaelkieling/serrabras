@@ -13,6 +13,12 @@ class C_locais extends CI_Controller {
         $this->load->view('page/locais/index');
     }
     function cadastro(){
+        $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
     	$nome = $this->input->post('nome');
     	$h_i = $this->input->post('horario_inicial');
     	$h_f = $this->input->post('horario_final');
@@ -27,6 +33,12 @@ class C_locais extends CI_Controller {
         }
     }
     function pegaLocais(){
+        $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
         $this->load->model('M_locais');
     	$data = $this->M_locais->pegaLocais();
 
@@ -35,6 +47,12 @@ class C_locais extends CI_Controller {
     }
     
     function deleta($id){
+        $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+        
         $this->load->model('M_locais');
     	$data = $this->M_locais->deleta($id);
 

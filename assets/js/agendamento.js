@@ -6,7 +6,20 @@ var localEscolhido = 0; //local que foi escolhido no select
 
 verificaDados();
 formAdd();
+pegaMedidas();
 escondeHoras();
+
+function pegaMedidas(){
+    $('.medida-form').html();
+    $.ajax({
+        url:'agendamento/buscamedidas',
+        success:function(data){
+            for(var index=0;index<data.length;index++){
+                $('.medida-form').append("<option value='"+data[index]['idMedida']+"'>"+data[index]['qualidade']+"-"+data[index]['espessura']+"-"+data[index]['largura']+"-"+data[index]['comprimento']+"</option>");
+            }
+        }
+    })
+}
 
 function verificaDados(){
     if(horaEscolhida == "Nenhuma" || horaInicial == 0 || horaFinal==0 || localEscolhido == "null"){
@@ -15,18 +28,20 @@ function verificaDados(){
         $('#btn-agendar').show();
     }
 }
+
 //Coloca o formulário de peças no campo adicionando mais 1
 function formAdd(){
     $('tbody').append("<tr>"+
             "<td><input name='nmr_pacotes[]' class='form-control form-table-input' required></td>"+
             "<td>"+
-                "<select name='medida[]' class='form-control form-table-input' required>"+
-                    "<option>B1-17-18</option>"+
+                "<select name='medida[]' class='form-control form-table-input medida-form' required>"+
+                    "<option>Selecione uma</option>"+
                 "</select>"+
             "</td>"+
             "<td><input name='pecas[]' class='form-control form-table-input' required></td>"+
             "<td><a onclick='formAdd();' class='btn btn-default btn-secondary'><span class='glyphicon glyphicon-plus'></span></a></td>"+
         "</tr><tr><td> &nbsp</td></tr>");
+    pegaMedidas();
 }
 
 function fechaBotoes(){
@@ -35,6 +50,7 @@ function fechaBotoes(){
         $('#'+i).removeClass('hora-importante');
     }
 }
+
 //Coloca o botão como verde e o resto em amarelo para destacar
 $('.hora-aberta').click(function(){
     fechaBotoes();
@@ -112,8 +128,8 @@ function convertData(data){
 
 function escondeDataLimite(horario_inicial,horario_final){
     fechaBotoes();
-    mostraHoras();
     verificaDados();
+    mostraHoras();
 
     localEscolhido = $('#local').val();
     if(localEscolhido == "null"){

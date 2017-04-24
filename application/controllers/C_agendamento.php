@@ -18,6 +18,12 @@ class C_agendamento extends CI_Controller {
         $this->load->view('page/agendamento/index',$data);
     }
     function cadastro(){
+        $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+        
         $this->load->helper('currency_helper');
 
         $data_post = array(
@@ -52,6 +58,12 @@ class C_agendamento extends CI_Controller {
         redirect('/agendamento');
     }
     function buscaHorarioUsado($data,$local){
+        $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
         $this->load->helper('currency_helper');
         $data_convertida = dataConvert($data,"mysql");
 
@@ -60,6 +72,13 @@ class C_agendamento extends CI_Controller {
 
         header('Content-type:application/json');
         echo json_encode($datal);
+    }
+    function buscaMedidas(){
+        $this->load->model('M_medidas');
+        $medidas = $this->M_medidas->pegaMedidas();
+
+        header('Content-type:application/json');
+        echo json_encode($medidas);
     }
 }
 ?>
