@@ -17,7 +17,6 @@
     display: inline-block;
     background:#ffbd4a !important ;
     color:#fff !important ;
-    box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
 }
 .hora-importante{
     background-color: #2ecc71 !important;

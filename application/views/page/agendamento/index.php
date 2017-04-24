@@ -22,7 +22,7 @@
             <!--Cadastrante-->
             <?= form_open('/agendamento/cadastro')?>
             <div class="form-group">
-                <label for="cadastrante">Cadastrante:</label>
+                <label for="cadastrante"><span class="glyphicon glyphicon-user"></span> Cadastrante:</label>
                 <input name="cadastrante" type="hidden" value="<?=$user['idUsuario']?>">
                 <input id="cadastrante" readonly class="form-control" value="<?=$user['email']?>">
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-md-6">
                     <!--Definir local-->
                     <div class="form-group">
-                        <label for="local">Local de descarga:</label>
+                        <label for="local"><span class="glyphicon glyphicon-road"></span> Local de descarga:</label>
                         <select class="form-control" id="local" name="local" required>
                             <option onclick='escondeDataLimite()' value='null'>Selecione um local</option>
                             <?php 
@@ -44,7 +44,7 @@
                 <div class="col-md-6">
                     <!--Data de entrega em dia-->
                     <div class="form-group">
-                        <label for="datepicker">Data para entrega:</label>
+                        <label for="datepicker"><span class="glyphicon glyphicon-calendar"></span> Data para entrega:</label>
                         <input id="dateval" name="datepicker" onchange="verificaData();" readonly class="form-control" placeholder="Defina um data">
                     </div>
                     <br>
@@ -90,9 +90,9 @@
             <table id="form" class="form-table-table">
                 <thead>
                     <tr>
-                        <th>Nº de pacotes</th>
-                        <th>Medidas</th>
-                        <th>Peças</th>
+                        <th><span class="glyphicon glyphicon-th-large"></span> Nº de pacotes</th>
+                        <th><span class="glyphicon glyphicon-indent-left"></span> Medidas</th>
+                        <th><span class="glyphicon glyphicon-wrench"></span> Peças</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -125,6 +125,6 @@
         autoclose: true
     });
 
-    
+
 </script>
 </body>
