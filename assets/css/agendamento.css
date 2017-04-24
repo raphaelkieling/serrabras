@@ -1,4 +1,12 @@
-.hora{
+.hora-aberta:hover{
+    opacity: 0.6;
+}
+.hora-aberta p{
+    margin: 0 auto;
+    font-size: 18px;
+    padding-top: 25px;
+}
+.hora-aberta{
     box-sizing: border-box !important;
     width: 18%;
     height: 80px;
@@ -7,26 +15,10 @@
     margin: 5px;
     cursor: pointer;
     display: inline-block;
-}
-.hora:hover{
-    opacity: 0.6;
-}
-.hora p{
-    margin: 0 auto;
-    font-size: 18px;
-    padding-top: 25px;
-}
-
-.hora-aberta{
     background:#ffbd4a !important ;
-    color:black !important ;
+    color:#fff !important ;
 }
-.hora-fechada{ 
-    /*background:#e1e8e6 !important ;
-    color:white !important ;
-    cursor: auto !important;*/
-    display: none;
-}
-.hora-fechada:hover{
-    opacity: 1 !important;
+.hora-importante{
+    background-color: #2ecc71 !important;
+    color: #fff !important;
 }

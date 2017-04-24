@@ -1,29 +1,78 @@
+//variaveis
+var horaEscolhida = "Nenhuma";//variavel que armazena que dia foi escolhido
+var horaInicial   = 0; // hora que o local definiu como inicial
+var horaFinal     = 0; // hora que foi definida como final do local
+var localEscolhido = 0; //local que foi escolhido no select
+
+verificaDados();
+formAdd();
+escondeHoras();
+
+function verificaDados(){
+    if(horaEscolhida == "Nenhuma" || horaInicial == 0 || horaFinal==0 || localEscolhido == "null"){
+        $('#btn-agendar').hide();
+    }else{
+        $('#btn-agendar').show();
+    }
+}
+//Coloca o formulário de peças no campo adicionando mais 1
 function formAdd(){
     $('tbody').append("<tr>"+
-            "<td><input name='nmr_pacotes[]' class='form-control form-table-input'></td>"+
+            "<td><input name='nmr_pacotes[]' class='form-control form-table-input' required></td>"+
             "<td>"+
-                "<select name='medida[]' class='form-control form-table-input'>"+
+                "<select name='medida[]' class='form-control form-table-input' required>"+
                     "<option>B1-17-18</option>"+
                 "</select>"+
             "</td>"+
-            "<td><input name='pecas[]' class='form-control form-table-input'></td>"+
-            "<td><button onclick='formAdd();' class='btn btn-default btn-secondary'><span class='glyphicon glyphicon-plus'></span></button></td>"+
+            "<td><input name='pecas[]' class='form-control form-table-input' required></td>"+
+            "<td><a onclick='formAdd();' class='btn btn-default btn-secondary'><span class='glyphicon glyphicon-plus'></span></a></td>"+
         "</tr><tr><td> &nbsp</td></tr>");
 }
-formAdd();
 
-var horaEscolhida = "Nenhuma";
+function fechaBotoes(){
+    horaEscolhida = "Nenhuma";
+    for(var i=0;i<24;i++){
+        $('#'+i).removeClass('hora-importante');
+    }
+}
+//Coloca o botão como verde e o resto em amarelo para destacar
 $('.hora-aberta').click(function(){
-
-    $('.hora-aberta').css("cssText", "background: #ffbd4a !important;");
-    $(this).css("cssText", "background: #5fbeaa !important;");
+    fechaBotoes();
 
     horaEscolhida = $(this).attr('id');
     $('#hora_form').val(horaEscolhida);
+    $(this).addClass('hora-importante');
 
+    verificaDados();
 })
 
+//Mostra as horas
+function mostraHoras(){
+    verificaDados();
+    $('#5').show();
+    $('#8').show();
+    $('#11').show();
+    $('#14').show();
+    $('#17').show();
+    $('#20').show();
+    $('.div-horas').show();
+    $('.div-horas-message').hide();
+}
+function escondeHoras(){
+    verificaDados();
+    $('#5').hide();
+    $('#8').hide();
+    $('#11').hide();
+    $('#14').hide();
+    $('#17').hide();
+    $('#20').hide();
+    $('.div-horas').hide();
+    $('.div-horas-message').show();
+}
+
+//Verifica a data()
 function verificaData(){
+    fechaBotoes();
     var datepicker = $('#dateval');
 
     var semana = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
@@ -32,24 +81,27 @@ function verificaData(){
     var data_semana = new Date(arr[0], arr[1] - 1, arr[2]);
     var dia = data_semana.getDay();
 
-    if(semana[dia] == semana[0] || semana[dia] == semana[6]){
-        alert("Final de semana");
+    if(semana[dia] == semana[0] || semana[dia] == semana[6] || localEscolhido == 'null'){
         datepicker.val('');
     }else{
+        if(localEscolhido == ''){
+            escondeHoras();
+        }
         data_convertida = convertData(data);
         $.ajax({
-            url:'agendamento/buscahorario/'+data_convertida,
+            url:'agendamento/buscahorario/'+data_convertida+'/'+localEscolhido,
             success:function(data){
-                if(data.length==0){
-                    mostraHoras();
-                }
+                //mostra todas as datas do local
+                escondeDataLimite(horaInicial,horaFinal);
+                //esconde as dadas usadas nesse dia
                 for(var i=0;i<data.length;i++){
                     var horario_esconde = data[i]['hora_entrega'];
                     $('#'+horario_esconde).hide();
-                    $('#'+horario_esconde).removeClass('hora-aberta');
                 }
+                verificaDados();
             }
-        })
+        });
+        
     }
 }
 
@@ -58,12 +110,24 @@ function convertData(data){
     return calendario[0]+"-"+calendario[1]+"-"+calendario[2];
 }
 
-function mostraHoras(){
-    $('#5').addClass('hora-aberta').show();
-    $('#8').addClass('hora-aberta').show();
-    $('#11').addClass('hora-aberta').show();
-    $('#14').addClass('hora-aberta').show();
-    $('#17').addClass('hora-aberta').show();
-    $('#20').addClass('hora-aberta').show();
-    $('hora-aberta').show();
+function escondeDataLimite(horario_inicial,horario_final){
+    fechaBotoes();
+    mostraHoras();
+    verificaDados();
+
+    localEscolhido = $('#local').val();
+    if(localEscolhido == "null"){
+        escondeHoras();
+        horaEscolhida = "Nenhuma";
+    }
+    horaInicial = horario_inicial;
+    horaFinal   = horario_final;
+
+    for(var i=0;i<horario_inicial;i++){
+        $("#"+i).hide();
+    }
+
+    for(var i=horario_final+1;i<24;i++){
+        $("#"+i).hide();
+    }
 }

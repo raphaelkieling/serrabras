@@ -7,6 +7,7 @@
 
     <link href="<?=base_url()?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/login.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/css/button.css" rel="stylesheet">
 </head>
 
 <body>

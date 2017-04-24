@@ -20,4 +20,4 @@ $route['locais/deleta/(:num)'] = 'C_locais/deleta/$1';
 
 $route['agendamento'] = 'C_agendamento/index';
 $route['agendamento/cadastro'] = 'C_agendamento/cadastro';
-$route['agendamento/buscahorario/(:any)'] = 'C_agendamento/buscaHorarioUsado/$1';
+$route['agendamento/buscahorario/(:any)/(:any)'] = 'C_agendamento/buscaHorarioUsado/$1/$2';

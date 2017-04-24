@@ -19,15 +19,29 @@ class C_agendamento extends CI_Controller {
     }
     function cadastro(){
         $this->load->helper('currency_helper');
+
         $data_post = array(
-            "codUsuario" => $this->input->post('cadastrante'),
-            "codLocal"=>$this->input->post('local'),
-            "data" =>dataConvert($this->input->post('datepicker'),"mysql"),
-            "hora_entrega"=>$this->input->post('hora')
+            "codUsuario"   => $this->input->post('cadastrante'),
+            "codLocal"     =>$this->input->post('local'),
+            "data"         =>dataConvert($this->input->post('datepicker'),"mysql"),
+            "hora_entrega" =>$this->input->post('hora')
         );
         $this->load->model('M_agendamento');
-        $data = $this->M_agendamento->cadastrarAgendamento($data_post);
+        $data_idAgendamento = $this->M_agendamento->cadastrarAgendamento($data_post);
+        $data_post_pedido = array(
+            'codAgendamento'=> $data_idAgendamento,
+            'nmr_pacotes'   => $this->input->post('nmr_pacotes[]'),
+            'medida'        =>$this->input->post('medida[]'),
+            'peca'          =>$this->input->post('pecas[]'),
+        );
+        $pacotes = $data_post_pedido['nmr_pacotes'];
+        $medida  = $data_post_pedido['medida'];
+        $peca    = $data_post_pedido['peca'];
 
+        for($index = 0;$index < count($data_post_pedido['nmr_pacotes']);$index++){
+            $data = $this->M_agendamento->cadastrarPedido($data_idAgendamento,$pacotes[$index],$medida[$index],$peca[$index]);
+        }
+    
         if($data){
             $this->session->set_flashdata('message-success','Tudo ocorreu como esperado');
             echo "deu";
@@ -37,12 +51,12 @@ class C_agendamento extends CI_Controller {
         }
         redirect('/agendamento');
     }
-    function buscaHorarioUsado($data){
+    function buscaHorarioUsado($data,$local){
         $this->load->helper('currency_helper');
         $data_convertida = dataConvert($data,"mysql");
 
         $this->load->model('M_agendamento');
-        $datal = $this->M_agendamento->buscahorario($data_convertida);
+        $datal = $this->M_agendamento->buscahorario($data_convertida,$local);
 
         header('Content-type:application/json');
         echo json_encode($datal);
