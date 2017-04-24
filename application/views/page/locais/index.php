@@ -1,4 +1,5 @@
 <div class="container">
+	<h1>Locais</h1>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="panel panel-default">
@@ -8,7 +9,7 @@
 				<div class="panel-body">
 					<div class="form-group">
 						<label for="nome">Nome do local</label>
-						<input id="nome" type="text" class="form-control">
+						<input id="nome" type="text" class="form-control" require>
 					</div>
 					<div class="form-group">
 						<label for="horario_inicio">Horário início</label>

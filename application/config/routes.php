@@ -27,5 +27,7 @@ $route['agendamento/cadastro'] = 'C_agendamento/cadastro';
 $route['agendamento/buscahorario/(:any)/(:any)'] = 'C_agendamento/buscaHorarioUsado/$1/$2';
 $route['agendamento/buscamedidas'] = 'C_agendamento/buscaMedidas';
 
+$route['agendados'] = 'C_agendados/index';
+
 $route['medidas'] = 'C_medidas/index';
 $route['medidas/deleta/(:num)'] = 'C_medidas/apagar/$1';

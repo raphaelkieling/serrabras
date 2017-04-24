@@ -52,7 +52,7 @@
                                 <li><a href="<?=base_url()?>/agendamento"><span class="glyphicon glyphicon-time"></span> Agendar</a></li>
                                 <?php if($user['permissao']>=$user_permission){?>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="<?=base_url()?>"><span class="glyphicon glyphicon-list-alt"></span> Agendados</a></li>
+                                <li><a href="<?=base_url()?>agendados"><span class="glyphicon glyphicon-list-alt"></span> Agendados</a></li>
                                 <?php } ?>
                             </ul>
                         </div>

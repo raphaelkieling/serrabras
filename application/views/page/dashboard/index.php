@@ -3,7 +3,7 @@
 </head>
 <body>
 	<div class="container">
-		<h4>Dashboard</h4>
+		<h1>Dashboard</h1>
 		<div class="alert alert-warning">
 			<b>Dashboard</b> sendo implementada...
 		</div>
