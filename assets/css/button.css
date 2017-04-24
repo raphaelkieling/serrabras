@@ -3,3 +3,21 @@
     border:none;
     box-shadow: none;
 }
+
+.form-table-input{
+    width: 90% !important;
+}
+
+.form-table-table td{
+    padding-top:5px !important;
+}
+.form-table-table{
+    width: 100% !important;
+}
+.panel-primary{
+    border-color:#ffbd4a !important;
+}
+.panel-primary .panel-heading{
+    background-color: #ffbd4a !important;
+    border-color:#ffbd4a !important;
+}
