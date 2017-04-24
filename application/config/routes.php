@@ -8,6 +8,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'C_login/login';
 $route['login/sair'] = 'C_login/sair';
 
+$route['usuarios'] = 'C_usuarios/index';
+$route['usuarios/pegausuarios'] = 'C_usuarios/pegaUsuarios';
+$route['usuarios/deleta/(:num)'] = 'C_usuarios/deleta/$1';
+
 $route['cadastrar'] = 'C_login/cadastrar';
 $route['cadastrarinfo'] = 'C_login/cadastrarInfo';
 
@@ -24,3 +28,4 @@ $route['agendamento/buscahorario/(:any)/(:any)'] = 'C_agendamento/buscaHorarioUs
 $route['agendamento/buscamedidas'] = 'C_agendamento/buscaMedidas';
 
 $route['medidas'] = 'C_medidas/index';
+$route['medidas/deleta/(:num)'] = 'C_medidas/apagar/$1';

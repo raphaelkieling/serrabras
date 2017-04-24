@@ -63,7 +63,7 @@
                     <?php } ?>
                     <li><a href="#" class=""><span class="glyphicon glyphicon-bell"></span> Notificações <span class="badge">3</span></a></li>     
                     <?php if($user['permissao']>=$user_permission){?>               
-                    <li><a href="#" class=""><span class="glyphicon glyphicon-user"></span> Usuários</a></li>
+                    <li><a href="<?=base_url()?>usuarios" class=""><span class="glyphicon glyphicon-user"></span> Usuários</a></li>
                     <?php } ?>
                 </ul>
                 <!--Botão abaixo do usuario-->

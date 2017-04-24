@@ -4,19 +4,24 @@ function cadastrar(){
     var nome = $('#nome').val();
     var horario_final = $('#horario_final').val();
     var horario_inicio = $('#horario_inicio').val();
-
-    $.ajax({
-        url:'locais/cadastro',
-        method:'POST',
-        data:{nome:nome,horario_final:horario_final,horario_inicial:horario_inicio},
-        success:function(data){
-            if(data){
-                atualizaTabela();
-            }else{
-                alert('Aldo deu errado...');
+    alert(horario_final);
+    if(!(parseInt(horario_inicio) === parseInt(horario_final)) && !(parseInt(horario_inicio) > parseInt(horario_final))){
+        $.ajax({
+            url:'locais/cadastro',
+            method:'POST',
+            data:{nome:nome,horario_final:horario_final,horario_inicial:horario_inicio},
+            success:function(data){
+                if(data){
+                    atualizaTabela();
+                }else{
+                    alert('Aldo deu errado...');
+                }
             }
-        }
-    })
+        })
+    }else{
+        alert('Desculpe o mesmo horário ou um horário final menor que o inicial...');
+    }
+    
 }
 
 function atualizaTabela(){

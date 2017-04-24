@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_locais extends CI_Controller {
     function index(){
         $user = $this->session->userdata('user');
-        if(!$user){
+        if(!$user || !$user['permissao']>=1){
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
         }
@@ -14,7 +14,7 @@ class C_locais extends CI_Controller {
     }
     function cadastro(){
         $user = $this->session->userdata('user');
-        if(!$user){
+        if(!$user || !$user['permissao']>=1){
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
         }
@@ -34,10 +34,11 @@ class C_locais extends CI_Controller {
     }
     function pegaLocais(){
         $user = $this->session->userdata('user');
-        if(!$user){
+        if(!$user || !$user['permissao']>=1){
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
-        }
+        }        
+        $user = $this->session->userdata('user');
 
         $this->load->model('M_locais');
     	$data = $this->M_locais->pegaLocais();
@@ -48,7 +49,7 @@ class C_locais extends CI_Controller {
     
     function deleta($id){
         $user = $this->session->userdata('user');
-        if(!$user){
+        if(!$user || !$user['permissao']>=1){
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
         }
