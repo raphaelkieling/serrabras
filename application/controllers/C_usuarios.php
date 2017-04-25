@@ -26,8 +26,6 @@ class C_usuarios extends CI_Controller {
             'senha'     =>$this->input->post('senha'),
             'permissao' =>$this->input->post('permissao')
         );
-
-        var_dump($info_post);
     }
     function deleta($id){
         $this->load->model('M_usuarios');

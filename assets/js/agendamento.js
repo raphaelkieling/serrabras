@@ -1,13 +1,26 @@
+
+$('#dateval').datepicker({
+    language:"pt-BR",
+    daysOfWeekDisabled: "0,6",
+    todayBtn: true,
+    todayHighlight: true,
+    calendarWeeks: true,
+    autoclose: true
+});
+
+
 //variaveis
 var horaEscolhida = "Nenhuma";//variavel que armazena que dia foi escolhido
 var horaInicial   = 0; // hora que o local definiu como inicial
 var horaFinal     = 0; // hora que foi definida como final do local
 var localEscolhido = 0; //local que foi escolhido no select
 
-verificaDados();
-formAdd();
-pegaMedidas();
-escondeHoras();
+    verificaDados();
+    
+    formAdd();
+    
+    pegaMedidas();
+    escondeHoras();
 
 function pegaMedidas(){
     $('.medida-form').html();
@@ -108,7 +121,7 @@ function verificaData(){
             url:'agendamento/buscahorario/'+data_convertida+'/'+localEscolhido,
             success:function(data){
                 //mostra todas as datas do local
-                escondeDataLimite(horaInicial,horaFinal);
+                
                 //esconde as dadas usadas nesse dia
                 for(var i=0;i<data.length;i++){
                     var horario_esconde = data[i]['hora_entrega'];
@@ -125,6 +138,7 @@ function convertData(data){
     var calendario = data.split('/');
     return calendario[0]+"-"+calendario[1]+"-"+calendario[2];
 }
+
 
 function escondeDataLimite(horario_inicial,horario_final){
     fechaBotoes();
@@ -146,5 +160,4 @@ function escondeDataLimite(horario_inicial,horario_final){
     for(var i=horario_final+1;i<24;i++){
         $("#"+i).hide();
     }
-    verificaData();
 }

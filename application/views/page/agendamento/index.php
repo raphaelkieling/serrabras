@@ -115,16 +115,4 @@
 <script src="<?=base_url()?>assets/js/bootstrap-datepicker.min.js"></script>
 <script src="<?=base_url()?>assets/js/bootstrap-datepicker.pt-BR.min.js"></script>
 <script src="<?=base_url()?>assets/js/agendamento.js"></script>
-<script>
-    $('#dateval').datepicker({
-        language:"pt-BR",
-        daysOfWeekDisabled: "0,6",
-        todayBtn: true,
-        todayHighlight: true,
-        calendarWeeks: true,
-        autoclose: true
-    });
-
-
-</script>
 </body>

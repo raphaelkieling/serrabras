@@ -13,7 +13,6 @@
 
     <script src="<?=base_url()?>assets/js/jquery-3.2.1.min.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
-    <script src="<?=base_url()?>assets/js/chart.min.js"></script>
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -38,9 +37,7 @@
             </div>
             <div class="collapse navbar-collapse" id="collapse-navbar">
                 <ul class="nav navbar-nav">
-                    <?php if($user['permissao']>=$user_permission){?>
                     <li><a href="<?=base_url()?>dashboard" class=""><span class="glyphicon glyphicon-signal"></span> Dashboard</a></li>
-                    <?php } ?>
                     <li>
                         <div class="dropdown">
                             <button class="navbar-btn btn dropdown-toggle btn-clear" id="dropdownAgenda" data-toggle="dropdown">
