@@ -121,7 +121,7 @@ function verificaData(){
             url:'agendamento/buscahorario/'+data_convertida+'/'+localEscolhido,
             success:function(data){
                 //mostra todas as datas do local
-                
+                escondeDataLimite();
                 //esconde as dadas usadas nesse dia
                 for(var i=0;i<data.length;i++){
                     var horario_esconde = data[i]['hora_entrega'];
@@ -139,25 +139,35 @@ function convertData(data){
     return calendario[0]+"-"+calendario[1]+"-"+calendario[2];
 }
 
+function limpaData(){
+    $('#dateval').val('');
+    escondeHoras();
+}
+function escondeDataLimite(){
+    horaInicial = $('#local').find(':selected').attr('data-init');
+    horaFinal = $('#local').find(':selected').attr('data-final');
 
-function escondeDataLimite(horario_inicial,horario_final){
     fechaBotoes();
     verificaDados();
     mostraHoras();
 
     localEscolhido = $('#local').val();
+
     if(localEscolhido == "null"){
         escondeHoras();
         horaEscolhida = "Nenhuma";
     }
-    horaInicial = horario_inicial;
-    horaFinal   = horario_final;
+    
+    console.log(horaInicial+" até "+horaFinal);
    
-    for(var i=0;i<horario_inicial;i++){
+
+    for(var i=0;i<horaInicial;i++){
         $("#"+i).hide();
+        // alert(horaInicial+" :"+ i);
     }
 
-    for(var i=horario_final+1;i<24;i++){
-        $("#"+i).hide();
+    for(var j=25;j>horaFinal;j--){
+        $("#"+j).hide();
+        // alert(" :"+ j);
     }
 }

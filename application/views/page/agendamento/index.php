@@ -31,11 +31,11 @@
                     <!--Definir local-->
                     <div class="form-group">
                         <label for="local"><span class="glyphicon glyphicon-road"></span> Local de descarga:</label>
-                        <select class="form-control" id="local" name="local" required>
-                            <option onclick='escondeDataLimite()' value='null'>Selecione um local</option>
+                        <select onchange='escondeDataLimite(); limpaData();' class="form-control" id="local" name="local" required>
+                            <option value='null'>Selecione um local</option>
                             <?php 
                                 foreach($locais as $locais){
-                                    echo "<option onclick='escondeDataLimite({$locais['horario_inicial']},{$locais['horario_final']});' value='{$locais['idLocal']}'>{$locais['nome']}</option>";
+                                    echo "<option data-init='{$locais['horario_inicial']}' data-final='{$locais['horario_final']}' value='{$locais['idLocal']}'>{$locais['nome']}</option>";
                                 }
                             ?>
                         </select>
@@ -55,7 +55,7 @@
             <input type="hidden" id="hora_form" name="hora" value="">
             <div class="div-horas">
                 <div id="5" class="hora-aberta">
-                <p class="text-center">5:00-7:00</p>
+                    <p class="text-center">5:00-7:00</p>
                 </div>
 
                 <div id="8" class="hora-aberta">
@@ -77,10 +77,14 @@
                 <div id="20" class="hora-aberta">
                     <p class="text-center">20:00-22:00</p>
                 </div>
+
+                <div id="23" class="hora-aberta">
+                    <p class="text-center">23:00-00:00</p>
+                </div>
             </div>
             <div class='div-horas-message'>
                 <div class="alert alert-warning">
-                    Escolha um local válido
+                    <h4>Escolha um local e hora válidos. Certifique-se de todos os campos estarem preenchidos.</h4>
                 </div>
             </div>
             <!--Final div horas-->

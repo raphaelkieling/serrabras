@@ -8,10 +8,9 @@
 }
 .hora-aberta{
     box-sizing: border-box !important;
-    width: 18%;
     height: 80px;
-    min-width: 100px;
-    border-radius: 5px;
+    padding: 5px;
+    border-radius: 3px;
     margin: 5px;
     cursor: pointer;
     display: inline-block;
