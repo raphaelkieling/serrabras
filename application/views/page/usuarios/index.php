@@ -7,9 +7,9 @@
                     echo "<div class='alert alert-danger'>".$this->session->flashdata('message')."</div>";
                 }
                 if($this->session->flashdata('message-success')){
-                    echo "<div class='alert alert-success'>".$this->session->flashdata('message')."</div>";
+                    echo "<div class='alert alert-success'>".$this->session->flashdata('message-success')."</div>";
                 }
-                echo validation_errors("<div class='alert alert-danger'>","</div>");
+                echo validation_errors();
             ?>
             <div class="table-responsive">
                 <table class="table table-stripped">
@@ -39,7 +39,7 @@
 
                                 <div class="form-group">
                                     <label for="email">E-mail</label>
-                                    <input type="email" name="email" class="modal-item-email form-control">
+                                    <input type="email" name="email" class="modal-item-email form-control" readonly>
                                 </div>
 
                                 <div class="form-group">
@@ -48,8 +48,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="senha">Repita a senha</label>
-                                    <input type="text" name="senha" class="modal-item-senha form-control" placeholder="Repita a senha">
+                                    <label for="senhan">Repita a senha</label>
+                                    <input type="text" name="senhan" class="modal-item-senha form-control" placeholder="Repita a senha">
                                 </div>
 
                                 <div class="form-group">
@@ -61,9 +61,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <br>
                                         <button type="submit" class="btn btn-danger btn-primary form-control">Modificar</button>
                                     </div>
                                     <div class="col-md-6">
+                                        <div class="col-xs-6">
+                                            <br>
+                                        </div>
                                         <button data-dismiss="modal" class="btn btn-danger btn-danger form-control">Cancelar</button>
                                     </div>
                                 </div>

@@ -16,5 +16,15 @@ class M_usuarios extends CI_Model{
             return false;
         }
     }
+    function modificar($info_post,$idUsuario){
+        $this->db->where('idUsuario',$idUsuario);
+        $this->db->update('usuario',$info_post);
+
+        if($this->db->affected_rows()>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 ?>

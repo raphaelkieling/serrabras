@@ -20,12 +20,37 @@ class C_usuarios extends CI_Controller {
         echo json_encode($data);
     }
     function editar(){
+        //pegas as informações do post
         $info_post = array(
-            'idUsuario' =>$this->input->post('idUsuario'),
-            'email'     =>$this->input->post('email'),
-            'senha'     =>$this->input->post('senha'),
+            'senha'     =>md5($this->input->post('senha')),
             'permissao' =>$this->input->post('permissao')
         );
+
+        $idUsuario = $this->input->post('idUsuario');
+        
+        //valida
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('senha','Senha','trim|required');
+        $this->form_validation->set_rules('senhan','Senha','trim|required|matches[senha]');
+        $this->form_validation->set_rules('permissao','Permissão','required|integer');
+
+        if(!$this->form_validation->run()==FALSE){
+            $this->load->model('M_usuarios');
+            $data = $this->M_usuarios->modificar($info_post,$idUsuario);
+            var_dump($info_post);
+
+            if($data){
+                $this->session->set_flashdata('message-success','Deu certo! O usuário <b>'.$idUsuario.'</b> foi atualizado');
+                redirect('/usuarios');
+            }else{
+                $this->session->set_flashdata('message','Erro ao editar o usuário <b>'.$idUsuario.'</b>. Está colocando a mesma senha que já é?');
+                redirect('/usuarios');
+            }
+        }else{
+            $this->session->set_flashdata('message',validation_errors());
+            redirect('/usuarios');
+        }
+       
     }
     function deleta($id){
         $this->load->model('M_usuarios');
