@@ -138,7 +138,7 @@ function escondeDataLimite(horario_inicial,horario_final){
     }
     horaInicial = horario_inicial;
     horaFinal   = horario_final;
-
+   
     for(var i=0;i<horario_inicial;i++){
         $("#"+i).hide();
     }
@@ -146,4 +146,5 @@ function escondeDataLimite(horario_inicial,horario_final){
     for(var i=horario_final+1;i<24;i++){
         $("#"+i).hide();
     }
+    verificaData();
 }

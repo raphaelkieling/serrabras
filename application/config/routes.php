@@ -11,6 +11,7 @@ $route['login/sair'] = 'C_login/sair';
 $route['usuarios'] = 'C_usuarios/index';
 $route['usuarios/pegausuarios'] = 'C_usuarios/pegaUsuarios';
 $route['usuarios/deleta/(:num)'] = 'C_usuarios/deleta/$1';
+$route['usuarios/editar'] = 'C_usuarios/editar';
 
 $route['cadastrar'] = 'C_login/cadastrar';
 $route['cadastrarinfo'] = 'C_login/cadastrarInfo';

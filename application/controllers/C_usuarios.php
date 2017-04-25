@@ -19,6 +19,16 @@ class C_usuarios extends CI_Controller {
         header('Content-type:application/json');
         echo json_encode($data);
     }
+    function editar(){
+        $info_post = array(
+            'idUsuario' =>$this->input->post('idUsuario'),
+            'email'     =>$this->input->post('email'),
+            'senha'     =>$this->input->post('senha'),
+            'permissao' =>$this->input->post('permissao')
+        );
+
+        var_dump($info_post);
+    }
     function deleta($id){
         $this->load->model('M_usuarios');
         $data = $this->M_usuarios->apagar($id);
