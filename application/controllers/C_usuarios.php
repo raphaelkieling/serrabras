@@ -37,7 +37,6 @@ class C_usuarios extends CI_Controller {
         if(!$this->form_validation->run()==FALSE){
             $this->load->model('M_usuarios');
             $data = $this->M_usuarios->modificar($info_post,$idUsuario);
-            var_dump($info_post);
 
             if($data){
                 $this->session->set_flashdata('message-success','Deu certo! O usuário <b>'.$idUsuario.'</b> foi atualizado');
