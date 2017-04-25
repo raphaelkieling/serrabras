@@ -13,6 +13,12 @@ class C_usuarios extends CI_Controller {
         $this->load->view('page/usuarios/index');
     }
     function pegaUsuarios(){
+        $user = $this->session->userdata('user');
+        if(!$user || !$user['permissao']>=1){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
         $this->load->model('M_usuarios');
         $data = $this->M_usuarios->pegaUsuarios();
 
@@ -20,6 +26,12 @@ class C_usuarios extends CI_Controller {
         echo json_encode($data);
     }
     function editar(){
+        $user = $this->session->userdata('user');
+        if(!$user || !$user['permissao']>=1){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
         //pegas as informações do post
         $info_post = array(
             'senha'     =>md5($this->input->post('senha')),
@@ -52,6 +64,12 @@ class C_usuarios extends CI_Controller {
        
     }
     function deleta($id){
+        $user = $this->session->userdata('user');
+        if(!$user || !$user['permissao']>=1){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+        
         $this->load->model('M_usuarios');
         $data = $this->M_usuarios->apagar($id);
     }

@@ -10,8 +10,6 @@ class C_dashboard extends CI_Controller {
 
     function analises()
     {
-        $analitycs = array();
-
         $this->load->model('M_dashboard');
         $analitycs = array(
             'data_na'=>$this->M_dashboard->numeroAgendamentos(),

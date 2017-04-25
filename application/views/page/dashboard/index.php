@@ -48,6 +48,8 @@
 					var contexto = new Chart(ctx,{
 						type:'line',
 						data:data,
+						backgroundColor: "rgba(75,192,192,0.4)",
+						
 					});
 				}//final success
 			})
