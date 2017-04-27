@@ -5,7 +5,7 @@
         <div class="page-header"><h1><?=$pedidos[0]['nome']?></h1></div>
         <p>
             <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span>
-            ExtraForte Madeiras
+           <?=$user['empresa']?>
         </p>
 
         <p>
