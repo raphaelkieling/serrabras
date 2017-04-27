@@ -45,9 +45,18 @@
                 <td><?=$agenda['nmr_pacotes']?></td>
                 <td><span class="label label-<?=$label?>"><?=$text?></span></td>
                 <td>
-                    <?php if($agenda['status']!=2){?>
-                    <a class="btn btn-default btn-xs" href="<?=base_url()?>agendados/cancela/<?=$agenda['idAgenda']?>/<?=$this->session->userdata('user')['idUsuario']?>"> Cancelar </a>    
-                    <?php } ?>
+                    <div class="dropdown">
+                      <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Opções
+                      <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="<?=base_url()?>perfil/<?=$agenda['codUsuario']?>"> Ver histórico do fornecedor</a></li>
+                        <?php if($agenda['status']==0 ){?>
+                        <li><a href="<?=base_url()?>agendados/cancela/<?=$agenda['idAgenda']?>/<?=$this->session->userdata('user')['idUsuario']?>"> Cancelar </a></li>   
+                        <?php } ?>
+                      </ul>
+                    </div>
                 </td>
               </tr>
               <?php }?>

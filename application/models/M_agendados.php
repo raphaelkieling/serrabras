@@ -18,7 +18,7 @@ class M_agendados extends CI_Model{
         $this->db->select_sum('nmr_pacotes');
         
         $this->db->group_by("codAgendamento");   
-        $this->db->select('codLocal,data,hora_entrega,nome,status,idAgenda');    
+        $this->db->select('codLocal,data,hora_entrega,nome,status,idAgenda,codUsuario');    
         return $this->db->get('agenda')->result_array();
 
     }
