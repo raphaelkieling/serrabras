@@ -84,9 +84,8 @@
                             <img src="<?=base_url()?>assets/img/user_photo/<?=$user['foto_perfil']?>" style="width:30px;height:30px;border-radius:50%;">
                              Olá <b><?=$user['email']?></b>
                         </button>
-                        
                         <ul class="dropdown-menu" aria-labelledby="dropdownLogin">
-                            <li><a href="#">Configurações de perfil</a></li>
+                            <li><a href="<?=base_url()?>perfil/<?= $user['idUsuario']?>">Configurações de perfil</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="<?=base_url()?>login/sair">Sair</a></li>
                         </ul>

@@ -1,59 +1,57 @@
-<head>
-	<link rel="stylesheet" href="<?=base_url()?>assets/css/dashboard.css">
-</head>
 <body>
-	<div class="container">
-		<h1>Dashboard</h1>
-		<div class="alert alert-warning">
-			<b>Dashboard</b> sendo implementada...
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<canvas class="agendamento"></canvas>
-					</div>
-				</div>
-				<!--Fim painel-->
-			</div>
-			<!--Col md 4-->
-		</div>
-		<!--Fim row-->
-	</div>
-	<!--Fim container-->
-
-	<script src="<?=base_url()?>assets/js/Chart.js"></script>
-	<script>
-		dashboard();
-
-		function dashboard(){
-			$.ajax({
-				url:'dashboard/analises',
-				success:function(data){
-					var localidade = [];
-					var horario    = [];
-
-					for(var index=0;index<data['data_hr'].length;index++){
-						localidade.push(data['data_hr'][index]['nome']);
-						horario.push(data['data_hr'][index]['hora_entrega']);				
-					}
-					var data={
-						labels:localidade,
-						datasets:[{
-							label:'Análise de Horários',
-							data:horario
-						}]
-					}			
-					var ctx = $('.agendamento');
-					var contexto = new Chart(ctx,{
-						type:'line',
-						data:data,
-						backgroundColor: "rgba(75,192,192,0.4)",
-						
-					});
-				}//final success
-			})
-		}
-
-	</script>
-</body>
+    <div class="container">
+    
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <span class="label label-success">Notificações</span>
+        <h2>Mudança no sistema de emissão de notas fiscais</h2>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-primary" href="#" role="button">Entendi</a></p>
+      </div>
+    </div>
+      <hr>
+        
+    <div class="container">
+            <h2>Últimos agendamentos</h2>
+        <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Local de descarga</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Pacotes</th>
+                <th>Status</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+                <?php foreach($agendamentos as $agenda){
+                    $label = "primary";
+                    $text  = "Aguardando";
+                    if($agenda['status']==1){
+                        $label = "success";
+                        $text  = "Aceito";
+                    }else if($agenda['status']==2){
+                        $label = "danger";
+                        $text  = "Cancelado";
+                    }
+                ?>
+              <tr>
+                <td><a href="#"><?=$agenda['nome']?></a></td>
+                <td><?=dataConvertView($agenda['data'])?></td>
+                <td><?=$agenda['hora_entrega']?></td>
+                <td><?=$agenda['nmr_pacotes']?></td>
+                <td><span class="label label-<?=$label?>"><?=$text?></span></td>
+                <td>
+                    <?php if($agenda['status']!=2){?>
+                    <a class="btn btn-default btn-xs" href="<?=base_url()?>agendados/cancela/<?=$agenda['idAgenda']?>/<?=$this->session->userdata('user')['idUsuario']?>"> Cancelar </a>    
+                    <?php } ?>
+                </td>
+              </tr>
+              <?php }?>
+            </tbody>
+        </table>
+    </div> <!-- /container -->
+  </body>
+</html>
