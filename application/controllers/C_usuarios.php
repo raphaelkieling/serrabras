@@ -73,7 +73,7 @@ class C_usuarios extends CI_Controller {
 
     function perfil($id){
         $user = $this->session->userdata('user');
-        if(!$user || !$user['permissao']>=1){
+        if(!$user){
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
         }

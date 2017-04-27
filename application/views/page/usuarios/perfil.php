@@ -56,8 +56,8 @@
           }
           ?>
           <tr>
-            <td><?=$pedidos['idAgenda']?></td>
-            <td><a href="#"><?=$pedidos['nome']?></a></td>
+            <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedidos['idAgenda']?>"><?=$pedidos['idAgenda']?></a></td>
+            <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedidos['idAgenda']?>"><?=$pedidos['nome']?></a></td>
             <td><?= dataConvertView($pedidos['data'])?></td>
             <td><?=$pedidos['hora_entrega']?></td>
             <td><?=$pedidos['nmr_pacotes']?></td>

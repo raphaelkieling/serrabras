@@ -11,7 +11,7 @@
       </div>
     </div>
       <hr>
-        
+    <?php if(isset($agendamentos[0])){?>    
     <div class="container">
         <h2>Últimos agendamentos</h2>
         <table class="table table-striped table-hover">
@@ -26,7 +26,6 @@
               </tr>
             </thead>
             <tbody>
-              <?php if(isset($agendamentos[0])){?>
                 <?php foreach($agendamentos as $agenda){
                     $label = "primary";
                     $text  = "Aguardando";
@@ -39,7 +38,7 @@
                     }
                 ?>
               <tr>
-                <td><a href="#"><?=$agenda['nome']?></a></td>
+                <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$agenda['idAgenda']?>"><?=$agenda['nome']?></a></td>
                 <td><?=dataConvertView($agenda['data'])?></td>
                 <td><?=$agenda['hora_entrega']?></td>
                 <td><?=$agenda['nmr_pacotes']?></td>
@@ -60,9 +59,9 @@
                 </td>
               </tr>
               <?php }?>
-              <?php }?>
             </tbody>
         </table>
     </div> <!-- /container -->
+    <?php }?>
   </body>
 </html>

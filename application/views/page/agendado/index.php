@@ -1,7 +1,7 @@
 <body>
     <div class="container">
     <br>
-      <h2>Agendamentos (7)</h2>
+      <h2>Agendamentos (<?=count($pedidos)?>)</h2>
       <p>Confira abaixo o histórico dos seus agendamentos:</p>
       <table class="table table-striped table-hover">
         <thead>
@@ -16,13 +16,24 @@
           </tr>
         </thead>
         <tbody>
+          <?php foreach($pedidos as $pedido){
+            $label = "primary";
+            $text  = "Aguardando";
+            if($pedido['status']==1){
+                $label = "success";
+                $text  = "Aceito";
+            }else if($pedido['status']==2){
+                $label = "danger";
+                $text  = "Cancelado";
+            }
+          ?>
           <tr>
-            <td><a href="#">Battistella</a></td>
-            <td>Fornecedor01</td>
-            <td>26/04/2017</td>
-            <td>07:00 - 09:00</td>
-            <td>08</td>
-            <td><span class="label label-primary">Aguardando</span></td>
+            <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedido['idAgenda']?>"><?=$pedido['nome']?></a></td>
+            <td><?=$pedido['unome']?></td>
+            <td><?=dataConvertView($pedido['data'])?></td>
+            <td><?=$pedido['hora_entrega']?></td>
+            <td><?=$pedido['nmr_pacotes']?></td>
+            <td><span class="label label-<?=$label?>"><?=$text?></span></td>
             <td>
                 <div class="dropdown">
                   <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -30,129 +41,18 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Marcar como entregue</a></li>
-                    <li><a href="#">Ver histórico do fornecedor</a></li>
-                    <li><a href="#">Cancelar</a></li>
+                    <?php if($pedido['status']==0 ){?>
+                    <li><a href="<?=base_url()?>agendados/entrege/<?=$pedido['idAgenda']?>/<?=$this->session->userdata('user')['idUsuario']?>">Marcar como entregue</a></li>
+                    <?php } ?>
+                    <li><a href="<?=base_url()?>perfil/<?=$pedido['codUsuario']?>">Ver histórico do fornecedor</a></li>
+                    <?php if($pedido['status']==0 ){?>
+                    <li><a href="<?=base_url()?>agendados/cancela/<?=$pedido['idAgenda']?>/<?=$this->session->userdata('user')['idUsuario']?>">Cancelar</a></li>
+                    <?php } ?>
                   </ul>
                 </div>
             </td>
           </tr>
-          <tr>
-            <td><a href="#">Porto de Itapoá</a></td>
-            <td>Fornecedor08</td>
-            <td>25/04/2017</td>
-            <td>10:00 - 12:00</td>
-            <td>10</td>
-            <td><span class="label label-primary">Aguardando</span></td>
-            <td>
-                <div class="dropdown">
-                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Opções
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Marcar como entregue</a></li>
-                    <li><a href="#">Ver histórico do fornecedor</a></li>
-                    <li><a href="#">Cancelar</a></li>
-                  </ul>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="#">Battistella</a></td>
-            <td>Fornecedor30</td>
-            <td>10/04/2017</td>
-            <td>08:00 - 10:00</td>
-            <td>06</td>
-            <td><span class="label label-success">Realizado</span></td>
-            <td>
-                <div class="dropdown">
-                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Opções
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Ver histórico do fornecedor</a></li>
-                  </ul>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="#">Porto de São Francisco do Sul</a></td>
-            <td>Fornecedor32</td>
-            <td>10/04/2017</td>
-            <td>08:00 - 10:00</td>
-            <td>20</td>
-            <td><span class="label label-success">Realizado</span></td>
-            <td>
-                <div class="dropdown">
-                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Opções
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Ver histórico do fornecedor</a></li>
-                  </ul>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Battistella</td>
-            <td>Fornecedor23</td>
-            <td>10/04/2017</td>
-            <td>08:00 - 10:00</td>
-            <td>08</td>
-            <td><span class="label label-success">Realizado</span></td>
-            <td>
-                <div class="dropdown">
-                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Opções
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Ver histórico do fornecedor</a></li>
-                  </ul>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Porto de Itapoá</td>
-            <td>Fornecedor45</td>
-            <td>09/04/2017</td>
-            <td>12:00 - 14:00</td>
-            <td>08</td>
-            <td><span class="label label-warning">Cancelado</span></td>
-            <td>
-                <div class="dropdown">
-                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Opções
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Ver histórico do fornecedor</a></li>
-                  </ul>
-                </div>
-            </td>
-          </tr>
-          <tr>
-            <td>Porto de São Francisco do Sul</td>
-            <td>Fornecedor18</td>
-            <td>08/04/2017</td>
-            <td>16:00 - 18:00</td>
-            <td>12</td>
-            <td><span class="label label-success">Realizado</span></td>
-            <td>
-                <div class="dropdown">
-                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Opções
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Ver histórico do fornecedor</a></li>
-                  </ul>
-                </div>
-            </td>
-          </tr>
+          <?php } ?>
         </tbody>
       </table>
 

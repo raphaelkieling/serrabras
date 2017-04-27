@@ -26,7 +26,7 @@
             foreach($usuario as $usuario){
         ?>
          <tr>
-            <td><a href="<?=base_url()?>perfil/<?=$usuario['idUsuario']?>"><?=$usuario['nome']?></a></td>
+            <td><?=$usuario['nome']?></td>
             <td><?=$usuario['empresa']?></td>
             <td><?=$usuario['email']?></td>
             <td><span class="label label-<?php if($usuario['permissao']==0){echo "info";}else{echo "success";}?>">
