@@ -1,7 +1,5 @@
 <body>
     <div class="container">
-''    
-    <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
         <span class="label label-success">Notificações</span>
@@ -52,7 +50,7 @@
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="<?=base_url()?>perfil/<?=$agenda['codUsuario']?>"> Ver histórico do fornecedor</a></li>
                         <?php if($agenda['status']==0 ){?>
-                        <li><a href="<?=base_url()?>agendados/cancela/<?=$agenda['idAgenda']?>/<?=$this->session->userdata('user')['idUsuario']?>"> Cancelar </a></li>   
+                        <li><a href="<?=base_url()?>agendados/cancela/<?=$agenda['idAgenda']?>/<?=$user['idUsuario']?>"> Cancelar </a></li>   
                         <?php } ?>
                       </ul>
                     </div>

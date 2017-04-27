@@ -15,6 +15,7 @@
           </tr>
         </thead>
         <tbody>
+          <?php if(isset($agendamentos)){?>  
           <?php foreach($agendamentos as $agendamento){
             $label = "primary";
             $text  = "Aguardando";
@@ -39,18 +40,19 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <?php if($agendamento['status']==0 && $this->session->userdata('user')['permissao']>=1  ){?>
-                    <li><a href="<?=base_url()?>agendados/entrege/<?=$agendamento['idAgenda']?>/<?=$this->session->userdata('user')['idUsuario']?>">Marcar como entregue</a></li>
+                    <?php if($agendamento['status']==0 && $user['permissao']>=1  ){?>
+                    <li><a href="<?=base_url()?>agendados/entrege/<?=$agendamento['idAgenda']?>/<?=$user['idUsuario']?>">Marcar como entregue</a></li>
                     <?php } ?>
                     <li><a href="<?=base_url()?>perfil/<?=$agendamento['codUsuario']?>">Ver histórico do fornecedor</a></li>
                     <?php if($agendamento['status']==0 ){?>
-                    <li><a href="<?=base_url()?>agendados/cancela/<?=$agendamento['idAgenda']?>/<?=$this->session->userdata('user')['idUsuario']?>">Cancelar</a></li>
+                    <li><a href="<?=base_url()?>agendados/cancela/<?=$agendamento['idAgenda']?>/<?=$user['idUsuario']?>">Cancelar</a></li>
                     <?php } ?>
                   </ul>
                 </div>
             </td>
           </tr>
           <?php } ?>
+          <?php }?> 
         </tbody>
       </table>
 

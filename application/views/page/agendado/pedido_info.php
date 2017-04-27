@@ -30,7 +30,7 @@
             <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp &nbsp<span class="label label-<?=$label?>"><?=$text?></span>
         </p>
         <p>
-            <?php if($this->session->userdata('user')['permissao']!=0){?>
+            <?php if($user['permissao']!=0){?>
             <a class="btn btn-success" href="<?=base_url()?>agendados/entrege/<?=$pedidos[0]['codAgenda']?>/0" role="button">Confirmar entrega</a>
             <?php }?>
             <a class="btn btn-danger" href="<?=base_url()?>agendados/cancela/<?=$pedidos[0]['codAgenda']?>/0" role="button">Cancelar</a> 

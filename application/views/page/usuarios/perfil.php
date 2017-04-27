@@ -70,7 +70,7 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <?php if($this->session->userdata('user')['permissao']>=1){?>
+                    <?php if($usuario['permissao']>=1){?>
                     <li><a href="<?=base_url()?>agendados/entrege/<?=$pedidos['idAgenda']?>/<?=$usuario[0]['idUsuario']?>">Marcar como entregue</a></li>
                     <?php } ?>
                     <li><a href="<?=base_url()?>agendados/cancela/<?=$pedidos['idAgenda']?>/<?=$usuario[0]['idUsuario']?>">Cancelar</a></li>

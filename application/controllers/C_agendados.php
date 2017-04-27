@@ -12,7 +12,7 @@ class C_agendados extends CI_Controller {
 
         $this->load->model('M_agendados');
         $pedidos = $this->M_agendados->pegaTodosOsPedidos();
-        $data = array('pedidos'=>$pedidos);
+        $data = array('pedidos'=>$pedidos,'user'=>$user);
 
 
         $this->load->view('components/header');
@@ -28,7 +28,7 @@ class C_agendados extends CI_Controller {
 
         $this->load->model('M_agendados');
         $pedidos = $this->M_agendados->pegaPedidoPorAgendamento($idAgenda);
-        $data = array('pedidos'=>$pedidos);
+        $data = array('pedidos'=>$pedidos,'user'=>$user);
 
         $this->load->view('components/header');
         $this->load->view('page/agendado/pedido_info',$data);
@@ -43,7 +43,7 @@ class C_agendados extends CI_Controller {
         $this->load->model('M_agendados');
         $data_limit = $this->M_agendados->fornecedorPedidos($idUsuario);
 
-        $data = array('agendamentos'=>$data_limit);
+        $data = array('agendamentos'=>$data_limit,'user'=>$user);
         $this->load->helper('currency_helper');
         
         $this->load->view('components/header');
