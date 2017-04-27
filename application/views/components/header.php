@@ -48,7 +48,9 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownAgenda">
                                 <?php if($user['permissao']==0){?>
                                 <li><a href="<?=base_url()?>agendamento"><span class="glyphicon glyphicon-time"></span> Agendar</a></li>
+                                <li><a href="<?=base_url()?>agendados/fornecedor/<?=$user['idUsuario']?>"><span class="glyphicon glyphicon-list-alt"></span> Agendados</a></li>
                                 <?php }?>
+
                                 <?php if($user['permissao']>=$user_permission){?>
                                 <li><a href="<?=base_url()?>agendados"><span class="glyphicon glyphicon-list-alt"></span> Agendados</a></li>
                                 <?php } ?>
@@ -58,8 +60,9 @@
                     <?php if($user['permissao']>=$user_permission){?>
                     <li><a href="<?=base_url()?>locais" class=""><span class="glyphicon glyphicon-map-marker"></span> Locais</a></li>
                     <li><a href="<?=base_url()?>medidas" class=""><span class="glyphicon glyphicon-tree-conifer"></span> Medidas</a></li>
+                    <li><a href="#" class=""><span class="glyphicon glyphicon-bell"></span> Notificações <span class="badge">3</span></a></li>
                     <?php } ?>
-                    <li><a href="#" class=""><span class="glyphicon glyphicon-bell"></span> Notificações <span class="badge">3</span></a></li>     
+
                     <?php if($user['permissao']>=$user_permission){?>               
                     <li>
                         <div class="dropdown">

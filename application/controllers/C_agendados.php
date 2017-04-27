@@ -33,6 +33,22 @@ class C_agendados extends CI_Controller {
         $this->load->view('components/header');
         $this->load->view('page/agendado/pedido_info',$data);
     }
+    function fornecedorPedidos($idUsuario){
+        $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
+        $this->load->model('M_agendados');
+        $data_limit = $this->M_agendados->fornecedorPedidos($idUsuario);
+
+        $data = array('agendamentos'=>$data_limit);
+        $this->load->helper('currency_helper');
+        
+        $this->load->view('components/header');
+        $this->load->view('page/agendado/index_fornecedor',$data);
+    }
     function entregue($id,$idUsuario){
         $user = $this->session->userdata('user');
         if(!$user || !$user['permissao']>=1){

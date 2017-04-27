@@ -23,6 +23,17 @@ class M_agendados extends CI_Model{
         $this->db->order_by('pedido.idPedido desc');
         return $this->db->get('agenda')->result_array();
     }
+    function fornecedorPedidos($idUsuario){
+        $this->db->where('codUsuario',$idUsuario);
+        $this->db->join('pedido','pedido.codAgendamento = agenda.idAgenda');
+        $this->db->join('local','local.idLocal = agenda.codLocal');
+        $this->db->select_sum('nmr_pacotes');
+        
+        $this->db->group_by("codAgendamento");   
+        $this->db->select('codLocal,data,hora_entrega,nome,status,idAgenda,codUsuario');    
+        $this->db->order_by('pedido.idPedido desc');
+        return $this->db->get('agenda')->result_array();
+    }
     function pegaPedidoPorAgendamento($idAgenda){
         $this->db->where('idAgenda',$idAgenda);
 
