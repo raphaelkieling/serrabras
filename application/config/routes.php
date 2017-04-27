@@ -33,6 +33,7 @@ $route['agendamento/buscamedidas'] = 'C_agendamento/buscaMedidas';
 
 $route['agendados'] = 'C_agendados/index';
 $route['agendados/entrege/(:num)/(:num)'] = 'C_agendados/entregue/$1/$2';
+$route['agendados/cancela/(:num)/(:num)'] = 'C_agendados/cancela/$1/$2';
 
 $route['medidas'] = 'C_medidas/index';
 $route['medidas/deleta/(:num)'] = 'C_medidas/apagar/$1';

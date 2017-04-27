@@ -28,7 +28,7 @@ class M_agendamento extends CI_Model{
     function buscahorario($data,$local){
         $this->db->where('data',$data);
         $this->db->where('codLocal',$local);
-        $this->db->where_not_in('status',3);
+        $this->db->where_not_in('status',2);
         return $this->db->get('agenda')->result_array();
     }
 }

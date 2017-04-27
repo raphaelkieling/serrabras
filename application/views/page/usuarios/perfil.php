@@ -28,7 +28,7 @@
         <div class="clearfix"></div>
     </div>
     
-      <h2>Agendamentos realizados (7)</h2>
+      <h2>Agendamentos realizados (<?=count($pedido)?>)</h2>
       <br/>
       <table class="table table-striped table-hover">
         <thead>
@@ -44,26 +44,26 @@
         </thead>
         <tbody>
         <?php if(isset($pedido[0])){?>
-        <?php foreach($pedido as $pedido)
+        <?php foreach($pedido as $pedidos){
           $label = "primary";
           $text  = "Aguardando";
-          if($pedido['status']==1){
+          if($pedidos['status']==1){
             $label = "success";
             $text  = "Aceito";
-          }else if($pedido['status']==2){
+          }else if($pedidos['status']==2){
             $label = "danger";
             $text  = "Cancelado";
           }
-        {?>
+          ?>
           <tr>
-            <td><?=$pedido['idAgenda']?></td>
-            <td><a href="#"><?=$pedido['nome']?></a></td>
-            <td><?= dataConvertView($pedido['data'])?></td>
-            <td><?=$pedido['hora_entrega']?></td>
-            <td><?=$pedido['nmr_pacotes']?></td>
+            <td><?=$pedidos['idAgenda']?></td>
+            <td><a href="#"><?=$pedidos['nome']?></a></td>
+            <td><?= dataConvertView($pedidos['data'])?></td>
+            <td><?=$pedidos['hora_entrega']?></td>
+            <td><?=$pedidos['nmr_pacotes']?></td>
             <td><span class="label label-<?=$label?>"><?=$text?></span></td>
             <td>
-                <?php if($pedido['status']==0){?>
+                <?php if($pedidos['status']==0){?>
                 <div class="dropdown">
                   <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Opções
@@ -71,9 +71,9 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <?php if($this->session->userdata('user')['permissao']>=1){?>
-                    <li><a href="<?=base_url()?>agendados/entrege/<?=$pedido['idAgenda']?>/<?=$usuario[0]['idUsuario']?>">Marcar como entregue</a></li>
+                    <li><a href="<?=base_url()?>agendados/entrege/<?=$pedidos['idAgenda']?>/<?=$usuario[0]['idUsuario']?>">Marcar como entregue</a></li>
                     <?php } ?>
-                    <li><a href="<?=base_url()?>/agendados">Cancelar</a></li>
+                    <li><a href="<?=base_url()?>agendados/cancela/<?=$pedidos['idAgenda']?>/<?=$usuario[0]['idUsuario']?>">Cancelar</a></li>
                   </ul>
                 </div>
                 <?php } ?>

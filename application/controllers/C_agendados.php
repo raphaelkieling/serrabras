@@ -24,5 +24,17 @@ class C_agendados extends CI_Controller {
 
         redirect('/perfil/'.$idUsuario);
     }
+    function  cancela($id,$idUsuario){
+        $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
+        $this->load->model('M_agendados');
+        $dado = $this->M_agendados->cancela($id);
+
+        redirect('/perfil/'.$idUsuario);
+    }
 }
 ?>

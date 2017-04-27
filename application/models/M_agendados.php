@@ -21,5 +21,15 @@ class M_agendados extends CI_Model{
             return false;
         }
     }
+    function cancela($id){
+        $this->db->where('idAgenda',$id);
+        $this->db->update('agenda',array('status'=>2));
+
+        if($this->db->affected_rows()>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 ?>

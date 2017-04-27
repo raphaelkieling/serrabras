@@ -40,7 +40,11 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="<?=base_url()?>">Editar</a></li>
-                    <li><a href="<?=base_url()?>">Ver histórico do fornecedor</a></li>
+                    <li>
+                    <?php if($usuario['permissao']==0){?>
+                      <a href="<?=base_url()?>perfil/<?= $usuario['idUsuario']?>">Ver histórico do fornecedor</a>
+                    <?php }?>
+                    </li>
                     <li><a href="<?=base_url()?>usuarios/deleta/<?=$usuario['idUsuario']?>">Remover</a></li>
                   </ul>
                 </div>

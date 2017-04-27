@@ -42,21 +42,12 @@
 
                     <br><br>
                     <span class="glyphicon glyphicon-user"></span> Esqueceu sua senha?
-                    
+                    <br><br>
                 </div>
             </div>
             <div class="col-md-4"></div>
         </div> 
         <!--Final row 1-->
-
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                Ainda não tem uma conta? <a href="<?=base_url()?>cadastrar">CADASTRE-SE</a>
-            </div>
-            <div class="col-md-4"></div>
-        </div>
-        <!-- Final row 2-->
     </div>
     <!--Container-->
 </body>

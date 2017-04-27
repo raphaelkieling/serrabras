@@ -85,9 +85,9 @@ class C_usuarios extends CI_Controller {
         $pedido = $this->M_agendados-> agendadosPor($id);
 
         $this->load->helper('currency_helper');
-        
+
         $data = array('usuario' => $usuario,'pedido'=>$pedido);
-        
+
         $this->load->view('components/header');
         $this->load->view('page/usuarios/perfil',$data);
     }
