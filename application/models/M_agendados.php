@@ -8,7 +8,8 @@ class M_agendados extends CI_Model{
         $this->db->select_sum('nmr_pacotes');
         
         $this->db->group_by("codAgendamento");   
-        $this->db->select('codLocal,data,hora_entrega,nome,status,idAgenda');    
+        $this->db->select('codLocal,data,hora_entrega,nome,status,idAgenda');
+        $this->db->order_by('pedido.idPedido desc');    
         return $this->db->get('agenda')->result_array();
     }
     function pegaTodosOsPedidos(){
@@ -19,7 +20,7 @@ class M_agendados extends CI_Model{
         
         $this->db->group_by("codAgendamento");   
         $this->db->select('codLocal,data,hora_entrega,local.nome as nome,status,idAgenda,usuario.nome as unome,codUsuario');    
-        $this->db->order_by('data');
+        $this->db->order_by('pedido.idPedido desc');
         return $this->db->get('agenda')->result_array();
     }
     function pegaPedidoPorAgendamento($idAgenda){
@@ -31,7 +32,7 @@ class M_agendados extends CI_Model{
         $this->db->join('medida','medida.idMedida = pedido.codMedida');
         
         $this->db->select('codLocal,data,hora_entrega,local.nome as nome,status,codAgendamento as codAgenda,usuario.nome as unome,codUsuario,pedido.nmr_pacotes as nmr,qualidade,espessura,largura,comprimento,peca');    
-        $this->db->order_by('data');
+        $this->db->order_by('pedido.idPedido desc');
         return $this->db->get('agenda')->result_array();
     }
     function pegaLimit($limit,$idUsuario){
@@ -43,6 +44,7 @@ class M_agendados extends CI_Model{
         
         $this->db->group_by("codAgendamento");   
         $this->db->select('codLocal,data,hora_entrega,nome,status,idAgenda,codUsuario');    
+        $this->db->order_by('pedido.idPedido desc');
         return $this->db->get('agenda')->result_array();
 
     }
