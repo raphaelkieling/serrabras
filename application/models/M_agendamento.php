@@ -13,7 +13,7 @@ class M_agendamento extends CI_Model{
        $data = array(
         'codAgendamento'=>$data_idAgendamento,
         'nmr_pacotes'   =>$pacotes,
-        'codMedida'        =>$medida,
+        'codMedida'     =>$medida,
         'peca'          =>$peca
        );
 
@@ -28,6 +28,7 @@ class M_agendamento extends CI_Model{
     function buscahorario($data,$local){
         $this->db->where('data',$data);
         $this->db->where('codLocal',$local);
+        $this->db->where_not_in('status',3);
         return $this->db->get('agenda')->result_array();
     }
 }

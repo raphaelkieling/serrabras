@@ -9,6 +9,14 @@
         }else{
             return $dia."/".$mes."/".$ano;
         }
+    }
+
+    function dataConvertView($data){
+        $ano = substr($data,0,4);
+        $mes = substr($data,5,2);
+        $dia = substr($data,8,2);
+
+        return $dia."/".$mes."/".$ano;
         
     }
 ?>

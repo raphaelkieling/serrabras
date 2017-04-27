@@ -1,83 +1,56 @@
-<div class="container">
-    <h1>Usuários</h1>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <?php 
-                if($this->session->flashdata('message')){
-                    echo "<div class='alert alert-danger'>".$this->session->flashdata('message')."</div>";
-                }
-                if($this->session->flashdata('message-success')){
-                    echo "<div class='alert alert-success'>".$this->session->flashdata('message-success')."</div>";
-                }
-                echo validation_errors();
-            ?>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <thead>
-                        <th># Id</th>
-                        <th>E-mail</th>
-                        <th>Senha</th>
-                        <th>Permissão</th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table>
-                <div class="modal fade" tabindex="-1" role="dialog" id="mysmall" aria-labelledby="mysmall">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <p class="modal-title">Editar item <span class='modal-item-id'></span></p>
-                            </div>
-                            <div class="modal-body">
-                                <?= form_open('usuarios/editar');?>
-                                <div class="form-group">
-                                    <label for="id">Id</label>
-                                    <input type="text" name="idUsuario" class="modal-item-id form-control" readonly>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email">E-mail</label>
-                                    <input type="email" name="email" class="modal-item-email form-control" readonly>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="senha">Senha</label>
-                                    <input type="text" name="senha" class="modal-item-senha form-control" placeholder="Coloque outra senha">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="senhan">Repita a senha</label>
-                                    <input type="text" name="senhan" class="modal-item-senha form-control" placeholder="Repita a senha">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="permissao">Permissão</label>
-                                    <select name="permissao" class="modal-item-permissao form-control">
-                                        <option value="0">Fornecedor</option>
-                                        <option value="1">Administrador</option>
-                                    </select>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <br>
-                                        <button type="submit" class="btn btn-danger btn-primary form-control">Modificar</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="col-xs-6">
-                                            <br>
-                                        </div>
-                                        <button data-dismiss="modal" class="btn btn-danger btn-danger form-control">Cancelar</button>
-                                    </div>
-                                </div>
-                                <?= form_close();?>
-                            </div>
-                        </div>
-                    </div>
+<body>
+    <div class="container">
+    <?php 
+        if($this->session->flashdata('message')){
+            echo "<div class='alert alert-danger'>".$this->session->flashdata('message')."</div>";
+        }
+        if($this->session->flashdata('message-success')){
+            echo "<div class='alert alert-success'>".$this->session->flashdata('message-success')."</div>";
+        }
+        echo validation_errors();
+    ?>
+      <h2>Usuários cadastrados (<?=$nmrUsuario?>)</h2>
+      <p>Confira abaixo a relação de usuários do sistema.</p>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Nome do usuário</th>
+            <th>Empresa</th>
+            <th>E-mail</th>
+            <th>Tipo</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+         <?php
+            foreach($usuario as $usuario){
+        ?>
+         <tr>
+            <td><a href="<?=base_url()?>perfil/<?=$usuario['idUsuario']?>"><?=$usuario['nome']?></a></td>
+            <td><?=$usuario['empresa']?></td>
+            <td><?=$usuario['email']?></td>
+            <td><span class="label label-<?php if($usuario['permissao']==0){echo "info";}else{echo "success";}?>">
+                <?php if($usuario['permissao']==0){echo "Fornecedor";}else{echo "Administrador";}?>
+            </span></td>
+            <td>
+                <div class="dropdown">
+                  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Opções
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="<?=base_url()?>">Editar</a></li>
+                    <li><a href="<?=base_url()?>">Ver histórico do fornecedor</a></li>
+                    <li><a href="<?=base_url()?>usuarios/deleta/<?=$usuario['idUsuario']?>">Remover</a></li>
+                  </ul>
                 </div>
-            </div>
-        </div>
-    </div>
-    <script src="<?=base_url()?>assets/js/usuarios.js"></script>
-</div>
+            </td>
+          </tr>
+        <?php
+            }
+         ?>
+        </tbody>
+      </table>
+
+    </div><!-- /.container -->
+</html>

@@ -6,15 +6,42 @@ class C_login extends CI_Controller {
         $this->load->view('page/login/index');
     }
     function cadastrar(){
-        $this->load->view('page/login/cadastrar');
+        $user = $this->session->userdata('user');
+        if(!$user || !$user['permissao']>=1){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+        
+        $this->load->view('components/header');
+        $this->load->view('page/login/cadastrar_add');
     }
     function cadastrarInfo(){
+        $user = $this->session->userdata('user');
+        if(!$user || !$user['permissao']>=1){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
         //Pegas as variaveis de cadastro
+        $nome = $this->input->post('nomeUsuario');
+        $empresa = $this->input->post('empresa');
+        $endereco = $this->input->post('endereco');
+        $cidadeEstado = $this->input->post('cidadeEstado');
+        $telefone = $this->input->post('telefone');
+
         $email = $this->input->post('email');
         $senha = $this->input->post('password');
         $senhaa = $this->input->post('passwordd');
+        $permissao = $this->input->post('tipoUsuario');
+
         //trata as variaves de cadastro
         $this->load->library('form_validation');
+        $this->form_validation->set_rules('nomeUsuario',"Nome",'required');
+        $this->form_validation->set_rules('empresa',"Empresa",'required');
+        $this->form_validation->set_rules('endereco',"Endereço",'required');
+        $this->form_validation->set_rules('cidadeEstado',"Cidade ou Estado",'required');
+        $this->form_validation->set_rules('telefone',"Telefone",'required');
+
         $this->form_validation->set_rules('email',"Email",'required|is_unique[usuario.email]');
         $this->form_validation->set_rules('password',"Senha",'required');
         $this->form_validation->set_rules('passwordd',"Repetir Senha",'required|matches[password]');
@@ -40,17 +67,30 @@ class C_login extends CI_Controller {
             else
             {
                     $data_img = array('upload_data' => $this->upload->data());
+                    $imagem = $data_img['upload_data']['file_name'];
+                    
+                    //coloca tudo em uma variavel
+                    $usuario_info = array(
+                        'email' => $email,
+                        'senha' => md5($senha),
+                        'permissao' => $permissao,
+                        'nome' => $nome,
+                        'empresa' => $empresa,
+                        'endereco' => $endereco,
+                        'cidadeEstado' => $cidadeEstado,
+                        'telefone' => $telefone,
+                        'foto_perfil' => $imagem
+                    );
 
                     //cadastra email senha e imagem em um usuario
                     $this->load->model('M_login');
-                    $resultado_cadastro = $this->M_login->cadastrar($email,md5($senha),$data_img['upload_data']['file_name']);
+                    $resultado_cadastro = $this->M_login->cadastrar($usuario_info);
                     if($resultado_cadastro){
-                        $this->session->set_flashdata('message-success','Deu tudo certo! Já pode logar.');
+                        $this->session->set_flashdata('message-success','Cadastro realizado com sucesso!');
                     }else{
                         $this->session->set_flashdata('message','Algo deu errado na hora do cadastro...');
-                    }
-                   
-                    $this->index();
+                    }          
+                    redirect('/usuarios');
             }
         }
 

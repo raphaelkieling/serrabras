@@ -8,23 +8,30 @@ class C_usuarios extends CI_Controller {
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
         }
-        
-        $this->load->view('components/header');
-        $this->load->view('page/usuarios/index');
-    }
-    function pegaUsuarios(){
-        $user = $this->session->userdata('user');
-        if(!$user || !$user['permissao']>=1){
-            $this->session->set_flashdata('message','Você não tem permissão');
-            redirect('/');
-        }
+        $this->load->model('M_usuarios');
+        $usuario = $this->M_usuarios->pegaUsuarios();
 
         $this->load->model('M_usuarios');
-        $data = $this->M_usuarios->pegaUsuarios();
+        $quantidadeUsuarios = $this->M_usuarios->nmrUsuarios();
 
-        header('Content-type:application/json');
-        echo json_encode($data);
+        $data = array('usuario'=>$usuario,'nmrUsuario'=>$quantidadeUsuarios);
+
+        $this->load->view('components/header');
+        $this->load->view('page/usuarios/index',$data);
     }
+    // function pegaUsuarios(){
+    //     $user = $this->session->userdata('user');
+    //     if(!$user || !$user['permissao']>=1){
+    //         $this->session->set_flashdata('message','Você não tem permissão');
+    //         redirect('/');
+    //     }
+
+    //     $this->load->model('M_usuarios');
+    //     $data = $this->M_usuarios->pegaUsuarios();
+
+    //     header('Content-type:application/json');
+    //     echo json_encode($data);
+    // }
     function editar(){
         $user = $this->session->userdata('user');
         if(!$user || !$user['permissao']>=1){
@@ -63,6 +70,28 @@ class C_usuarios extends CI_Controller {
         }
        
     }
+
+    function perfil($id){
+        $user = $this->session->userdata('user');
+        if(!$user || !$user['permissao']>=1){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
+        $this->load->model('M_usuarios');
+        $usuario = $this->M_usuarios->pegaUsuarioId($id);
+
+        $this->load->model('M_agendados');
+        $pedido = $this->M_agendados-> agendadosPor($id);
+
+        $this->load->helper('currency_helper');
+        
+        $data = array('usuario' => $usuario,'pedido'=>$pedido);
+        
+        $this->load->view('components/header');
+        $this->load->view('page/usuarios/perfil',$data);
+    }
+
     function deleta($id){
         $user = $this->session->userdata('user');
         if(!$user || !$user['permissao']>=1){
@@ -72,6 +101,8 @@ class C_usuarios extends CI_Controller {
         
         $this->load->model('M_usuarios');
         $data = $this->M_usuarios->apagar($id);
+
+        redirect('/usuarios');
     }
 }
 ?>

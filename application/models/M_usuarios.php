@@ -3,6 +3,10 @@ class M_usuarios extends CI_Model{
     function pegaUsuarios(){
         return $this->db->get('usuario')->result_array();
     }
+    function pegaUsuarioId($id){
+        $this->db->where('idUsuario',$id);
+        return $this->db->get('usuario')->result_array();
+    }
     function apagar($id){
         $this->db->where('idUsuario',$id);
         $this->db->delete('usuario');
@@ -15,6 +19,9 @@ class M_usuarios extends CI_Model{
         }else{
             return false;
         }
+    }
+    function nmrUsuarios(){
+        return $this->db->count_all_results('usuario');
     }
     function modificar($info_post,$idUsuario){
         $this->db->where('idUsuario',$idUsuario);

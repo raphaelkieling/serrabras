@@ -13,6 +13,8 @@ $route['usuarios/pegausuarios'] = 'C_usuarios/pegaUsuarios';
 $route['usuarios/deleta/(:num)'] = 'C_usuarios/deleta/$1';
 $route['usuarios/editar'] = 'C_usuarios/editar';
 
+$route['perfil/(:num)'] = 'C_usuarios/perfil/$1';
+
 $route['cadastrar'] = 'C_login/cadastrar';
 $route['cadastrarinfo'] = 'C_login/cadastrarInfo';
 
@@ -30,6 +32,7 @@ $route['agendamento/buscahorario/(:any)/(:any)'] = 'C_agendamento/buscaHorarioUs
 $route['agendamento/buscamedidas'] = 'C_agendamento/buscaMedidas';
 
 $route['agendados'] = 'C_agendados/index';
+$route['agendados/entrege/(:num)/(:num)'] = 'C_agendados/entregue/$1/$2';
 
 $route['medidas'] = 'C_medidas/index';
 $route['medidas/deleta/(:num)'] = 'C_medidas/apagar/$1';

@@ -60,7 +60,20 @@
                     <?php } ?>
                     <li><a href="#" class=""><span class="glyphicon glyphicon-bell"></span> Notificações <span class="badge">3</span></a></li>     
                     <?php if($user['permissao']>=$user_permission){?>               
-                    <li><a href="<?=base_url()?>usuarios" class=""><span class="glyphicon glyphicon-user"></span> Usuários</a></li>
+                    <li>
+                        <div class="dropdown">
+                            <button class="navbar-btn btn dropdown-toggle btn-clear" id="dropdownUser" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span> 
+                                Usuários
+                            </button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+                                <li><a href="<?=base_url()?>usuarios"><span class="glyphicon glyphicon-th-list"></span> Cadastrados</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="<?=base_url()?>cadastrar"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <?php } ?>
                 </ul>
                 <!--Botão abaixo do usuario-->
