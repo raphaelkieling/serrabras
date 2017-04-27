@@ -11,7 +11,7 @@ class C_dashboard extends CI_Controller {
         }
 
         $this->load->model('M_agendados');
-        $data_limit = $this->M_agendados->pegaLimit(5);
+        $data_limit = $this->M_agendados->pegaLimit(5,$user['idUsuario']);
 
         $data = array('agendamentos'=>$data_limit);
         $this->load->helper('currency_helper');

@@ -11,7 +11,8 @@ class M_agendados extends CI_Model{
         $this->db->select('codLocal,data,hora_entrega,nome,status,idAgenda');    
         return $this->db->get('agenda')->result_array();
     }
-    function pegaLimit($limit){
+    function pegaLimit($limit,$idUsuario){
+        $this->db->where('codUsuario',$idUsuario);
         $this->db->limit($limit);
         $this->db->join('pedido','pedido.codAgendamento = agenda.idAgenda');
         $this->db->join('local','local.idLocal = agenda.codLocal');

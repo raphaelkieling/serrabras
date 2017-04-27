@@ -8,3 +8,6 @@
 body{
     background: #f2f2f2;
 }
+.navbar-default {
+    border-top: 3px solid #2b7e5b !important;
+}
