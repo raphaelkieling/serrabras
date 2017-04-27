@@ -1,6 +1,6 @@
 <body>
     <div class="container">
-    
+''    
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
@@ -13,7 +13,7 @@
       <hr>
         
     <div class="container">
-            <h2>Últimos agendamentos</h2>
+        <h2>Últimos agendamentos</h2>
         <table class="table table-striped table-hover">
             <thead>
               <tr>
@@ -26,6 +26,7 @@
               </tr>
             </thead>
             <tbody>
+              <?php if(isset($agendamentos[0])){?>
                 <?php foreach($agendamentos as $agenda){
                     $label = "primary";
                     $text  = "Aguardando";
@@ -49,6 +50,7 @@
                     <?php } ?>
                 </td>
               </tr>
+              <?php }?>
               <?php }?>
             </tbody>
         </table>

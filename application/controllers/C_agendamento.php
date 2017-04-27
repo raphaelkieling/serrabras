@@ -72,6 +72,12 @@ class C_agendamento extends CI_Controller {
         echo json_encode($datal);
     }
     function buscaMedidas(){
+        $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
         $this->load->model('M_medidas');
         $medidas = $this->M_medidas->pegaMedidas();
 
