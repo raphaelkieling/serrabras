@@ -39,7 +39,7 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="<?=base_url()?>">Editar</a></li>
+                    <li><a href="<?=base_url()?>usuarios/editar/<?=$usuario['idUsuario']?>">Editar</a></li>
                     <li>
                     <?php if($usuario['permissao']==0){?>
                       <a href="<?=base_url()?>perfil/<?= $usuario['idUsuario']?>">Ver histórico do fornecedor</a>

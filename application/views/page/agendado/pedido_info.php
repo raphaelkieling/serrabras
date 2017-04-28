@@ -7,8 +7,13 @@
     <div class="jumbotron pt-0 pb-10">
         <div class="page-header"><h1><?=$pedidos[0]['nome']?></h1></div>
         <p>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+           <?=$usuario['nome']?>
+        </p>
+
+        <p>
             <span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span>
-           <?=$user['empresa']?>
+           <?=$usuario['empresa']?>
         </p>
 
         <p>

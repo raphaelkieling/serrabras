@@ -58,11 +58,12 @@ class C_locais extends CI_Controller {
             $data = $this->M_locais->altera($id,$data_post);
             
             if($data){
-                $this->session->set_flashdata('message-success','Cadastrado com sucesso');
+                $this->session->set_flashdata('message-success','Alterado com sucesso');
             }else{
-                $this->session->set_flashdata('message','Houve algum erro ao cadastrar');
+                $this->session->set_flashdata('message','Houve algum erro ao alterar');
             }
         }
+        
         $this->index();
 
     }

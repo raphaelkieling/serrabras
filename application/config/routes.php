@@ -11,7 +11,11 @@ $route['login/sair'] = 'C_login/sair';
 $route['usuarios'] = 'C_usuarios/index';
 $route['usuarios/pegausuarios'] = 'C_usuarios/pegaUsuarios';
 $route['usuarios/deleta/(:num)'] = 'C_usuarios/deleta/$1';
-$route['usuarios/editar'] = 'C_usuarios/editar';
+$route['usuarios/alterar/(:num)'] = 'C_usuarios/alterar/$1';
+
+//editar é o lugar onde fica a página de edição
+//o alterar de logo acima faz o processo de edição
+$route['usuarios/editar/(:num)'] = 'C_usuarios/editarUsuario/$1';
 
 $route['perfil/(:num)'] = 'C_usuarios/perfil/$1';
 

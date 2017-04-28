@@ -32,45 +32,100 @@ class C_usuarios extends CI_Controller {
     //     header('Content-type:application/json');
     //     echo json_encode($data);
     // }
-    function editar(){
+    function editarUsuario($idUsuario){
+         $user = $this->session->userdata('user');
+        if(!$user){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
+        $this->load->model('M_usuarios');
+        $data_usuario = $this->M_usuarios->pegaUsuarioId($idUsuario);
+
+        $data = array('usuario'=>$data_usuario[0],'user'=>$user);
+        $this->load->view('components/header');
+        $this->load->view('page/usuarios/modificar',$data);
+    }
+
+    function alterar($idUsuario){
         $user = $this->session->userdata('user');
         if(!$user || !$user['permissao']>=1){
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
         }
 
-        //pegas as informações do post
-        $info_post = array(
-            'senha'     =>md5($this->input->post('senha')),
-            'permissao' =>$this->input->post('permissao')
-        );
+        //Pegas as variaveis de cadastro
+        $nome = $this->input->post('nomeUsuario');
+        $empresa = $this->input->post('empresa');
+        $endereco = $this->input->post('endereco');
+        $cidadeEstado = $this->input->post('cidadeEstado');
+        $telefone = $this->input->post('telefone');
 
-        $idUsuario = $this->input->post('idUsuario');
-        
-        //valida
+        $email = $this->input->post('email');
+        $senha = $this->input->post('password');
+        $senhaa = $this->input->post('passwordd');
+        $permissao = $this->input->post('tipoUsuario');
+
+        //trata as variaves de cadastro
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('senha','Senha','trim|required');
-        $this->form_validation->set_rules('senhan','Senha','trim|required|matches[senha]');
-        $this->form_validation->set_rules('permissao','Permissão','required|integer');
+        $this->form_validation->set_rules('nomeUsuario',"Nome",'required');
+        $this->form_validation->set_rules('empresa',"Empresa",'required');
+        $this->form_validation->set_rules('endereco',"Endereço",'required');
+        $this->form_validation->set_rules('cidadeEstado',"Cidade ou Estado",'required');
+        $this->form_validation->set_rules('telefone',"Telefone",'required');
 
-        if(!$this->form_validation->run()==FALSE){
-            $this->load->model('M_usuarios');
-            $data = $this->M_usuarios->modificar($info_post,$idUsuario);
+        $this->form_validation->set_rules('email',"Email",'required');
+        $this->form_validation->set_rules('password',"Senha",'required');
+        $this->form_validation->set_rules('passwordd',"Repetir Senha",'required|matches[password]');
 
-            if($data){
-                $this->session->set_flashdata('message-success','Deu certo! O usuário <b>'.$idUsuario.'</b> foi atualizado');
-                redirect('/usuarios');
-            }else{
-                $this->session->set_flashdata('message','Erro ao editar o usuário <b>'.$idUsuario.'</b>. Está colocando a mesma senha que já é?');
-                redirect('/usuarios');
-            }
+        if($this->form_validation->run() == FALSE){
+            $this->editarUsuario($idUsuario);
         }else{
-            $this->session->set_flashdata('message',validation_errors());
-            redirect('/usuarios');
-        }
-       
-    }
+            // Trata a imagem
+            $config['upload_path']          = 'assets/img/user_photo';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 500;
+            $config['max_width']            = 1250;
+            $config['max_height']           = 720;
+            $config['encrypt_name'] = TRUE;
+            $this->load->library('upload', $config);
+            
+            if (!$this->upload->do_upload('image'))
+            {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->session->set_flashdata('message',$error['error']);
+                    $this->editarUsuario($idUsuario);
+            }
+            else
+            {
+                    $data_img = array('upload_data' => $this->upload->data());
+                    $imagem = $data_img['upload_data']['file_name'];
+                    
+                    //coloca tudo em uma variavel
+                    $usuario_info = array(
+                        'email' => $email,
+                        'senha' => md5($senha),
+                        'permissao' => $permissao,
+                        'nome' => $nome,
+                        'empresa' => $empresa,
+                        'endereco' => $endereco,
+                        'cidadeEstado' => $cidadeEstado,
+                        'telefone' => $telefone,
+                        'foto_perfil' => $imagem
+                    );
 
+                    //cadastra email senha e imagem em um usuario
+                    $this->load->model('M_usuarios');
+                    $resultado_cadastro = $this->M_usuarios->modificar($idUsuario,$usuario_info);
+                    if($resultado_cadastro){
+                        $this->session->set_flashdata('message-success','Alteração realizada com sucesso!');
+                    }else{
+                        $this->session->set_flashdata('message','Algo deu errado na hora da alteração...');
+                    }          
+                    $this->index();
+            }
+        }
+}
     function perfil($id){
         $user = $this->session->userdata('user');
         if(!$user){

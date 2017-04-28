@@ -23,9 +23,9 @@ class M_usuarios extends CI_Model{
     function nmrUsuarios(){
         return $this->db->count_all_results('usuario');
     }
-    function modificar($info_post,$idUsuario){
+    function modificar($idUsuario,$usuario_info){
         $this->db->where('idUsuario',$idUsuario);
-        $this->db->update('usuario',$info_post);
+        $this->db->update('usuario',$usuario_info);
 
         if($this->db->affected_rows()>0){
             return true;

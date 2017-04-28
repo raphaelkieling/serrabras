@@ -28,7 +28,11 @@ class C_agendados extends CI_Controller {
 
         $this->load->model('M_agendados');
         $pedidos = $this->M_agendados->pegaPedidoPorAgendamento($idAgenda);
-        $data = array('pedidos'=>$pedidos,'user'=>$user);
+
+        $this->load->model('M_usuarios');
+        $usuario = $this->M_usuarios->pegaUsuarioId($pedidos[0]['codUsuario']);
+
+        $data = array('pedidos'=>$pedidos,'user'=>$user,'usuario'=>$usuario[0]);
 
         $this->load->view('components/header');
         $this->load->view('page/agendado/pedido_info',$data);

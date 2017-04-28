@@ -7,7 +7,7 @@
                 <h1><?=$usuario[0]['nome']?></h1>
             </div>
             <div class="col-md-2 text-right">
-                <a class="btn btn-success mt-40" href="#" role="button">Editar perfil</a>
+                <a class="btn btn-success mt-40" href="<?=base_url()?>usuarios/editar/<?=$usuario[0]['idUsuario']?>" role="button">Editar perfil</a>
             </div>
             <div class="clearfix"></div>
         </div>
