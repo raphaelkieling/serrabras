@@ -95,7 +95,7 @@
 
 										<div class="form-group">
 											<label for="horario_final">Novo início</label>
-											<select class="form-control" id="iLocal" name="iLocal">
+											<select class="form-control" onchange="checaHorasModal();" id="iLocal" name="iLocal">
 												<option value=""></option>
 												<option value="5">5</option>
 												<option value="8">8</option>
@@ -109,7 +109,7 @@
 
 										<div class="form-group">
 											<label for="horario_final">Novo final</label>
-											<select class="form-control" id="fLocal" name="fLocal">
+											<select class="form-control" onchange="checaHorasModal();" id="fLocal" name="fLocal">
 												<option value=""></option>
 												<option value="5">5</option>
 												<option value="8">8</option>

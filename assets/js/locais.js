@@ -8,3 +8,14 @@ function checaHoras(){
        alert("O horário final não pode ser maior que o inicial");
     }
 }
+
+
+var hiM = $('#iLocal');
+var hfM = $('#fLocal');
+function checaHorasModal(){
+    if(parseInt(hiM.val()) > parseInt(hfM.val())){
+       hiM.val("");
+       hfM.val("");
+       alert("O horário final não pode ser maior que o inicial");
+    }
+}
