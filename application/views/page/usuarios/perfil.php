@@ -55,6 +55,7 @@
             $text  = "Cancelado";
           }
           ?>
+          
           <tr>
             <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedidos['idAgenda']?>"><?=$pedidos['idAgenda']?></a></td>
             <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedidos['idAgenda']?>"><?=$pedidos['nome']?></a></td>
@@ -70,7 +71,7 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <?php if($usuario[0]['permissao']>=1){?>
+                    <?php if($user['permissao']==1){?>
                     <li><a href="<?=base_url()?>agendados/entrege/<?=$pedidos['idAgenda']?>">Marcar como entregue</a></li>
                     <?php } ?>
                     <li><a href="<?=base_url()?>agendados/cancela/<?=$pedidos['idAgenda']?>">Cancelar</a></li>
