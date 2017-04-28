@@ -31,9 +31,9 @@
         </p>
         <p>
             <?php if($user['permissao']!=0){?>
-            <a class="btn btn-success" href="<?=base_url()?>agendados/entrege/<?=$pedidos[0]['codAgenda']?>/0" role="button">Confirmar entrega</a>
+            <a class="btn btn-success" href="<?=base_url()?>agendados/entrege/<?=$pedidos[0]['codAgenda']?>" role="button">Confirmar entrega</a>
             <?php }?>
-            <a class="btn btn-danger" href="<?=base_url()?>agendados/cancela/<?=$pedidos[0]['codAgenda']?>/0" role="button">Cancelar</a> 
+            <a class="btn btn-danger" href="<?=base_url()?>agendados/cancela/<?=$pedidos[0]['codAgenda']?>" role="button">Cancelar</a> 
             <a class="btn btn-default" href="<?=base_url()?>perfil/<?= $pedidos[0]['codUsuario']?>" role="button">Ver histórico deste fornecedor</a>
         </p>
     </div>

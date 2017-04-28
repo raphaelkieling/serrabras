@@ -32,8 +32,8 @@ $route['agendamento/buscahorario/(:any)/(:any)'] = 'C_agendamento/buscaHorarioUs
 $route['agendamento/buscamedidas'] = 'C_agendamento/buscaMedidas';
 
 $route['agendados'] = 'C_agendados/index';
-$route['agendados/entrege/(:num)/(:num)'] = 'C_agendados/entregue/$1/$2';
-$route['agendados/cancela/(:num)/(:num)'] = 'C_agendados/cancela/$1/$2';
+$route['agendados/entrege/(:num)'] = 'C_agendados/entregue/$1';
+$route['agendados/cancela/(:num)'] = 'C_agendados/cancela/$1';
 $route['agendados/pedidoinfo/(:num)'] = 'C_agendados/pedidoInfo/$1';
 $route['agendados/fornecedor/(:num)'] = 'C_agendados/fornecedorPedidos/$1';
 

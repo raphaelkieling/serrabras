@@ -3,6 +3,11 @@
     <br>
       <h2>Agendamentos (<?=count($pedidos)?>)</h2>
       <p>Confira abaixo o histórico dos seus agendamentos:</p>
+      <?php
+         if($this->session->flashdata('message')){
+              echo "<div class='alert alert-danger'>".$this->session->flashdata('message')."</div>";
+          }
+      ?>
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -43,11 +48,11 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <?php if($pedido['status']==0 ){?>
-                    <li><a href="<?=base_url()?>agendados/entrege/<?=$user['idUsuario']?>">Marcar como entregue</a></li>
+                    <li><a href="<?=base_url()?>agendados/entrege/<?=$pedido['idAgenda']?>">Marcar como entregue</a></li>
                     <?php } ?>
                     <li><a href="<?=base_url()?>perfil/<?=$pedido['codUsuario']?>">Ver histórico do fornecedor</a></li>
                     <?php if($pedido['status']==0 ){?>
-                    <li><a href="<?=base_url()?>agendados/cancela/<?=$pedido['idAgenda']?>/<?=$user['idUsuario']?>">Cancelar</a></li>
+                    <li><a href="<?=base_url()?>agendados/cancela/<?=$pedido['idAgenda']?>">Cancelar</a></li>
                     <?php } ?>
                   </ul>
                 </div>

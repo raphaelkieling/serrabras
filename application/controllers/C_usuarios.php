@@ -87,7 +87,7 @@ class C_usuarios extends CI_Controller {
         $this->load->helper('currency_helper');
 
         $data = array('usuario' => $usuario,'pedido'=>$pedido);
-
+        
         $this->load->view('components/header');
         $this->load->view('page/usuarios/perfil',$data);
     }

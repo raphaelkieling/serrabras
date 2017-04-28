@@ -70,10 +70,10 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <?php if($usuario['permissao']>=1){?>
-                    <li><a href="<?=base_url()?>agendados/entrege/<?=$pedidos['idAgenda']?>/<?=$usuario[0]['idUsuario']?>">Marcar como entregue</a></li>
+                    <?php if($usuario[0]['permissao']>=1){?>
+                    <li><a href="<?=base_url()?>agendados/entrege/<?=$pedidos['idAgenda']?>">Marcar como entregue</a></li>
                     <?php } ?>
-                    <li><a href="<?=base_url()?>agendados/cancela/<?=$pedidos['idAgenda']?>/<?=$usuario[0]['idUsuario']?>">Cancelar</a></li>
+                    <li><a href="<?=base_url()?>agendados/cancela/<?=$pedidos['idAgenda']?>">Cancelar</a></li>
                   </ul>
                 </div>
                 <?php } ?>

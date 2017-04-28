@@ -49,7 +49,7 @@ class C_agendados extends CI_Controller {
         $this->load->view('components/header');
         $this->load->view('page/agendado/index_fornecedor',$data);
     }
-    function entregue($id,$idUsuario){
+    function entregue($id){
         $user = $this->session->userdata('user');
         if(!$user || !$user['permissao']>=1){
             $this->session->set_flashdata('message','Você não tem permissão');
@@ -58,11 +58,11 @@ class C_agendados extends CI_Controller {
 
         $this->load->model('M_agendados');
         $dado = $this->M_agendados->entregue($id);
-
+        
         $url = $_SERVER['HTTP_REFERER'];
         redirect($url);
     }
-    function  cancela($id,$idUsuario){
+    function cancela($id){
         $user = $this->session->userdata('user');
         if(!$user){
             $this->session->set_flashdata('message','Você não tem permissão');

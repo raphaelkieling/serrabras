@@ -41,11 +41,11 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <?php if($agendamento['status']==0 && $user['permissao']>=1  ){?>
-                    <li><a href="<?=base_url()?>agendados/entrege/<?=$agendamento['idAgenda']?>/<?=$user['idUsuario']?>">Marcar como entregue</a></li>
+                    <li><a href="<?=base_url()?>agendados/entrege/<?=$agendamento['idAgenda']?>">Marcar como entregue</a></li>
                     <?php } ?>
                     <li><a href="<?=base_url()?>perfil/<?=$agendamento['codUsuario']?>">Ver histórico do fornecedor</a></li>
                     <?php if($agendamento['status']==0 ){?>
-                    <li><a href="<?=base_url()?>agendados/cancela/<?=$agendamento['idAgenda']?>/<?=$user['idUsuario']?>">Cancelar</a></li>
+                    <li><a href="<?=base_url()?>agendados/cancela/<?=$agendamento['idAgenda']?>">Cancelar</a></li>
                     <?php } ?>
                   </ul>
                 </div>
