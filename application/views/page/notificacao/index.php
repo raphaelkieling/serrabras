@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap-datepicker3.min.css">
+</head>
+<body>
 <div class="container">
     <h1><span class="glyphicon glyphicon-bell"></span> Notificações</h1>
     <div class="row">
@@ -35,14 +39,14 @@
              <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="data_inicio"><span class="glyphicon glyphicon-calendar"></span> Data para entrega:</label>
-                        <input name="data_inicio" id="data_inicio" readonly class="form-control dateval" placeholder="Defina um data">
+                        <label for="data_inicio"><span class="glyphicon glyphicon-calendar"></span> Data inicial:</label>
+                        <input name="data_inicio" id="data_inicio" onchange="comparaData();" readonly class="form-control dateval" placeholder="Defina um data">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="data_final"><span class="glyphicon glyphicon-calendar"></span> Data para entrega:</label>
-                        <input name="data_final" id="data_final" readonly class="form-control dateval" placeholder="Defina um data">
+                        <label for="data_final"><span class="glyphicon glyphicon-calendar"></span> Data final:</label>
+                        <input name="data_final" id="data_final" onchange="comparaData();" readonly class="form-control dateval" placeholder="Defina um data">
                     </div>
                 </div>
             </div>

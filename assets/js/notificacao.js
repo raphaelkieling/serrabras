@@ -13,3 +13,16 @@ $('.dateval').datepicker({
     calendarWeeks: true,
     autoclose: true
 });
+function convertData(data){
+    var calendario = data.split('/');
+    return calendario[2]+"-"+calendario[1]+"-"+calendario[0];
+}
+
+function comparaData(){
+    var dInicio = moment(convertData($('#data_inicio').val()));
+    var dFinal  = moment(convertData($('#data_final').val()));
+
+    var result = dFinal.diff(dInicio,'days');
+
+    alert(result);
+}

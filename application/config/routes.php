@@ -23,7 +23,7 @@ $route['dashboard/analises'] = 'C_dashboard/analises';
 
 $route['locais'] = 'C_locais/index';
 $route['locais/cadastro'] = 'C_locais/cadastro';
-$route['locais/pegalocais'] = 'C_locais/pegaLocais';
+$route['locais/altera'] = 'C_locais/altera';
 $route['locais/deleta/(:num)'] = 'C_locais/deleta/$1';
 
 $route['notificacao'] = 'C_notificacao/index';
