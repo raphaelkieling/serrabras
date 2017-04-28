@@ -1,0 +1,6 @@
+ .jumbotron{
+    background-image:url(../img/bg_info.jpg) !important;
+    background-size: cover;
+    background-repeat: none;
+    color: white !important;
+}

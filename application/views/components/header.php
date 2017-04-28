@@ -13,6 +13,7 @@
 
     <script src="<?=base_url()?>assets/js/jquery-3.2.1.min.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
+    <script src="<?=base_url()?>assets/js/moment.js"></script>
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -60,7 +61,7 @@
                     <?php if($user['permissao']>=$user_permission){?>
                     <li><a href="<?=base_url()?>locais" class=""><span class="glyphicon glyphicon-map-marker"></span> Locais</a></li>
                     <li><a href="<?=base_url()?>medidas" class=""><span class="glyphicon glyphicon-tree-conifer"></span> Medidas</a></li>
-                    <li><a href="#" class=""><span class="glyphicon glyphicon-bell"></span> Notificações <span class="badge">3</span></a></li>
+                    <li><a href="<?=base_url()?>notificacao" class=""><span class="glyphicon glyphicon-bell"></span> Notificações <span class="badge">3</span></a></li>
                     <?php } ?>
 
                     <?php if($user['permissao']>=$user_permission){?>               

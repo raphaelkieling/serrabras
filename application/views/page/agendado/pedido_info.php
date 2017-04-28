@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/pedido_info.css">
+</head>
 <body>
     <div class="container">
     <br>
