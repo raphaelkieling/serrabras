@@ -9,7 +9,34 @@ class C_notificacao extends CI_Controller {
             redirect('/');
         }
         
+        $this->load->model('M_notificacao');
+        $data_not = $this->M_notificacao->pegaNotificacao();
+
+        $this->load->helper('currency_helper');
+        $data = array('notificacao' => $data_not);
+
         $this->load->view('components/header');
-        $this->load->view('page/notificacao/index');
+        $this->load->view('page/notificacao/index',$data);
+    }
+    function cadastrar(){
+    	$this->load->helper('currency_helper');
+
+    	$data_post = array(
+    		'titulo'=>$this->input->post('titulo'),
+    		'descricao'=>$this->input->post('descricao'),
+    		'destino'=>$this->input->post('destino'),
+    		'importancia'=>$this->input->post('importancia'),
+    		'data_inicial'=>dataConvert($this->input->post('data_inicial'),'mysql'),
+    		'data_final'=>dataConvert($this->input->post('data_final'),'mysql'),	
+    	);
+
+    	$this->load->model('M_notificacao');
+    	$data = $this->M_notificacao->cadastrar($data_post);
+    	if($data){
+            $this->session->set_flashdata('message-success','Cadastro realizado com sucesso!');
+        }else{
+            $this->session->set_flashdata('message','Algo deu errado na hora do cadastro...');
+        }         
+        $this->index();
     }
 }

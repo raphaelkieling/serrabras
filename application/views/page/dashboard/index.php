@@ -1,13 +1,18 @@
 <body>
     <div class="container">
-    <div class="jumbotron">
-      <div class="container">
-        <span class="label label-success">Notificações</span>
-        <h2>Mudança no sistema de emissão de notas fiscais</h2>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-primary" href="#" role="button">Entendi</a></p>
-      </div>
-    </div>
+      <?php foreach($notificacao as $not){?>
+        <?php if($user['permissao'] >= $not['destino']){?>
+          <div id="<?=$not['idNotificacao']?>" class="alert alert-<?=$not['importancia']?> notificacao_verificar">
+            <input type="hidden" class="data_inicial" value="<?=dataConvertView($not['data_inicial'])?>">
+            <input type="hidden" class="data_final" value="<?=dataConvertView($not['data_final'])?>">
+
+            <span class="label label-<?=$not['importancia']?>">Notificações</span>
+            <h2><?=$not['titulo']?></h2>
+            <p><?=$not['descricao']?></p>
+            <p><a class="btn btn-primary" onclick="entendi(<?=$not['idNotificacao']?>)" role="button">Entendi</a></p>
+        </div>
+        <?php }?>
+      <?php }?>
       <hr>
     <?php if(isset($agendamentos[0])){?>    
     <div class="container">
@@ -61,5 +66,6 @@
         </table>
     </div> <!-- /container -->
     <?php }?>
+    <script src="<?=base_url()?>assets/js/notificacao.js"></script>
   </body>
 </html>

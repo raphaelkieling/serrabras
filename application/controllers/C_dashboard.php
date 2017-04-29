@@ -10,11 +10,15 @@ class C_dashboard extends CI_Controller {
             redirect('/');
         }
 
+
+        $this->load->model('M_notificacao');
+        $data_not = $this->M_notificacao->pegaNotificacao();
+
         $this->load->model('M_agendados');
         $data_limit = $this->M_agendados->pegaLimit(5,$user['idUsuario']);
 
 
-        $data = array('agendamentos'=>$data_limit,'user'=>$user);
+        $data = array('agendamentos'=>$data_limit,'user'=>$user,'notificacao'=>$data_not);
         $this->load->helper('currency_helper');
         
         $this->load->view('components/header');

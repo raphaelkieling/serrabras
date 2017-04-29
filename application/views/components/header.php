@@ -13,7 +13,7 @@
 
     <script src="<?=base_url()?>assets/js/jquery-3.2.1.min.js"></script>
     <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
-    <script src="<?=base_url()?>assets/js/moment.js"></script>
+    <script src="<?=base_url()?>assets/js/moment-with-locales.min.js"></script>
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">

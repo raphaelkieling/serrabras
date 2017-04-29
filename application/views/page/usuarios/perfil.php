@@ -28,6 +28,7 @@
         <div class="clearfix"></div>
     </div>
     
+      <?php if($user['permissao']==0){?>
       <h2>Agendamentos realizados (<?=count($pedido)?>)</h2>
       <br/>
       <table class="table table-striped table-hover">
@@ -84,6 +85,6 @@
         <?php }?>
         </tbody>
       </table>
-
+      <?php }?>
     </div><!-- /.container -->
 </html>
