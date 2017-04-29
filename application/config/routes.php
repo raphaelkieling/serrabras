@@ -45,4 +45,5 @@ $route['agendados/pedidoinfo/(:num)'] = 'C_agendados/pedidoInfo/$1';
 $route['agendados/fornecedor/(:num)'] = 'C_agendados/fornecedorPedidos/$1';
 
 $route['medidas'] = 'C_medidas/index';
+$route['medidas/cadastra'] = 'C_medidas/cadastra';
 $route['medidas/deleta/(:num)'] = 'C_medidas/apagar/$1';
