@@ -32,6 +32,7 @@ $route['locais/deleta/(:num)'] = 'C_locais/deleta/$1';
 
 $route['notificacao'] = 'C_notificacao/index';
 $route['notificacao/cadastrar'] = 'C_notificacao/cadastrar';
+$route['notificacao/cancela/(:num)'] = 'C_notificacao/cancela/$1';
 
 $route['agendamento'] = 'C_agendamento/index';
 $route['agendamento/cadastro'] = 'C_agendamento/cadastro';
@@ -46,4 +47,5 @@ $route['agendados/fornecedor/(:num)'] = 'C_agendados/fornecedorPedidos/$1';
 
 $route['medidas'] = 'C_medidas/index';
 $route['medidas/cadastra'] = 'C_medidas/cadastra';
+$route['medidas/alterar'] = 'C_medidas/alterar';
 $route['medidas/deleta/(:num)'] = 'C_medidas/apagar/$1';

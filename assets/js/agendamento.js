@@ -1,5 +1,6 @@
 
 $('#dateval').datepicker({
+    startDate: "date",
     language:"pt-BR",
     daysOfWeekDisabled: "0,6",
     todayBtn: true,
@@ -45,13 +46,13 @@ function verificaDados(){
 //Coloca o formulário de peças no campo adicionando mais 1
 function formAdd(){
     $('tbody').append("<tr>"+
-            "<td><input name='nmr_pacotes[]' class='form-control form-table-input' required></td>"+
+            "<td><input type='number' name='nmr_pacotes[]' class='form-control form-table-input' required></td>"+
             "<td>"+
                 "<select name='medida[]' class='form-control form-table-input medida-form' required>"+
                     "<option>Selecione uma</option>"+
                 "</select>"+
             "</td>"+
-            "<td><input name='pecas[]' class='form-control form-table-input' required></td>"+
+            "<td><input type='number' name='pecas[]' class='form-control form-table-input' required></td>"+
             "<td><a onclick='formAdd();' class='btn btn-default btn-secondary'><span class='glyphicon glyphicon-plus'></span></a></td>"+
         "</tr><tr><td> &nbsp</td></tr>");
     pegaMedidas();

@@ -19,6 +19,12 @@ class C_notificacao extends CI_Controller {
         $this->load->view('page/notificacao/index',$data);
     }
     function cadastrar(){
+        $user = $this->session->userdata('user');
+        if(!$user || !$user['permissao']>=1){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
     	$this->load->helper('currency_helper');
 
     	$data_post = array(
@@ -33,6 +39,23 @@ class C_notificacao extends CI_Controller {
     	$this->load->model('M_notificacao');
     	$data = $this->M_notificacao->cadastrar($data_post);
     	if($data){
+            $this->session->set_flashdata('message-success','Cadastro realizado com sucesso!');
+        }else{
+            $this->session->set_flashdata('message','Algo deu errado na hora do cadastro...');
+        }         
+        $this->index();
+    }
+    function cancela($id){
+        $user = $this->session->userdata('user');
+        if(!$user || !$user['permissao']>=1){
+            $this->session->set_flashdata('message','Você não tem permissão');
+            redirect('/');
+        }
+
+        $this->load->model('M_notificacao');
+        $data = $this->M_notificacao->cancela($id);
+        
+        if($data){
             $this->session->set_flashdata('message-success','Cadastro realizado com sucesso!');
         }else{
             $this->session->set_flashdata('message','Algo deu errado na hora do cadastro...');

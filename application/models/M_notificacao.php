@@ -11,4 +11,14 @@ class M_notificacao extends CI_Model{
 			return false;
 		}
 	}
+	function cancela($id){
+		$this->db->where('idNotificacao',$id);
+		$this->db->delete('notificacao');
+
+		if($this->db->affected_rows()>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

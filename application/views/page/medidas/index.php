@@ -25,17 +25,17 @@
 
                     <div class="form-group">
                         <label for="espessura">Espessura</label>
-                        <input type="text" class="form-control" name="espessura" required>
+                        <input type="number" class="form-control" name="espessura" required>
                     </div>
 
                     <div class="form-group">
                         <label for="largura">Largura</label>
-                        <input type="text" class="form-control" name="largura" required>
+                        <input type="number" class="form-control" name="largura" required>
                     </div>
 
                     <div class="form-group">
                         <label for="comprimento">Comprimento</label>
-                        <input type="text" class="form-control" name="comprimento" required>
+                        <input type="number" class="form-control" name="comprimento" required>
                     </div>
 
                     <button class="btn btn-primary form-control" type="submit">Cadastrar</button>
@@ -65,9 +65,56 @@
                                     <td><?=$med['largura']?></td>
                                     <td><?=$med['comprimento']?></td>                                
                                     <td>
+                                        <button type='button' class='btn btn-warning' data-toggle='modal' data-target='.myModal<?=$med['idMedida']?>'>Modificar</button> 
                                         <button onclick="deletar('<?=$med['idMedida']?>')" class='btn btn-default btn-danger'>Apagar</button>
+
+                                        <div class="modal fade myModal<?=$med['idMedida']?>" tabindex="-1" role="dialog" aria-labelledby="myModal<?=$med['idMedida']?>">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="gridSystemModalLabel">Medida # <?=$med['idMedida']?><span id="modalLocal"></span></h4>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <?=form_open('medidas/alterar')?>
+                                                        <div class="form-group">
+                                                           <label for="id">Id</label>
+                                                           <input type="text" class="form-control" name="id" value="<?=$med['idMedida']?>" placeholder="<?=$med['idMedida']?>" readonly>
+                                                        </div>
+
+                                                       <div class="form-group">
+                                                           <label for="qualidade">Qualidade</label>
+                                                           <input type="text" class="form-control" name="qualidade" value="<?=$med['qualidade']?>" placeholder="<?=$med['qualidade']?>">
+                                                       </div>
+
+                                                       <div class="form-group">
+                                                           <label for="espessura">Espessura</label>
+                                                           <input type="number" class="form-control" name="espessura" value="<?=$med['espessura']?>" placeholder="<?=$med['espessura']?>">
+                                                       </div>
+
+                                                       <div class="form-group">
+                                                           <label for="largura">Largura</label>
+                                                           <input type="number" class="form-control" name="largura" value="<?=$med['largura']?>" placeholder="<?=$med['largura']?>">
+                                                       </div>
+
+                                                       <div class="form-group">
+                                                           <label for="comprimento">Comprimento</label>
+                                                           <input type="number" class="form-control" name="comprimento" value="<?=$med['comprimento']?>" placeholder="<?=$med['comprimento']?>">
+                                                       </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                        <button type="submit" class="btn btn-primary">Alterar</button>
+                                                        <?=form_close()?>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
                                     </td>
                                 </tr>
+
+                                
                                 <?php }?>
                             </tbody>
                         </table>

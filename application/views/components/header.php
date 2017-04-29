@@ -61,7 +61,7 @@
                     <?php if($user['permissao']>=$user_permission){?>
                     <li><a href="<?=base_url()?>locais" class=""><span class="glyphicon glyphicon-map-marker"></span> Locais</a></li>
                     <li><a href="<?=base_url()?>medidas" class=""><span class="glyphicon glyphicon-tree-conifer"></span> Medidas</a></li>
-                    <li><a href="<?=base_url()?>notificacao" class=""><span class="glyphicon glyphicon-bell"></span> Notificações <span class="badge">3</span></a></li>
+                    <li><a href="<?=base_url()?>notificacao" class=""><span class="glyphicon glyphicon-bell"></span> Notificações</a></li>
                     <?php } ?>
 
                     <?php if($user['permissao']>=$user_permission){?>               

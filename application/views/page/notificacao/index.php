@@ -93,7 +93,7 @@
             <td><?=$not['descricao']?></td>
             <td class="data_inicial"><?=dataConvertView($not['data_inicial'])?></td>
             <td class="data_final"><?=dataConvertView($not['data_final'])?></td>
-            <td><a href="<?=base_url()?>notificacao/cancelar/<?=$not['idNotificacao']?>" class="btn btn-danger">Cancelar</a></td>
+            <td><a href="<?=base_url()?>notificacao/cancela/<?=$not['idNotificacao']?>" class="btn btn-danger">Cancelar</a></td>
         </tr>
         <?php }?>
     </table>

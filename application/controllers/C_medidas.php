@@ -35,6 +35,25 @@ class C_medidas extends CI_Controller {
         } 
         redirect('medidas');
     }
+    function alterar(){
+        $idMedida = $this->input->post('id');
+        $data_post = array(
+            'qualidade'=>$this->input->post('qualidade'),
+            'espessura'=>$this->input->post('espessura'),
+            'largura'=>$this->input->post('largura'),
+            'comprimento'=>$this->input->post('comprimento'),
+        );
+
+        $this->load->model('M_medidas');
+        $data = $this->M_medidas->alterar($idMedida,$data_post);
+
+        if($data){
+            $this->session->set_flashdata('message-success','Cadastro realizado com sucesso!');
+        }else{
+            $this->session->set_flashdata('message','Algo deu errado na hora do cadastro...');
+        } 
+        redirect('medidas');
+    }
     function apagar($id){
         $user = $this->session->userdata('user');
         if(!$user || !$user['permissao']>=1){

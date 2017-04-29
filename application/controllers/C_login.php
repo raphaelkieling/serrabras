@@ -11,7 +11,7 @@ class C_login extends CI_Controller {
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
         }
-        
+
         $this->load->view('components/header');
         $this->load->view('page/login/cadastrar_add');
     }
