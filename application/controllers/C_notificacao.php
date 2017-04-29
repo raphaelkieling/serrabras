@@ -56,9 +56,9 @@ class C_notificacao extends CI_Controller {
         $data = $this->M_notificacao->cancela($id);
         
         if($data){
-            $this->session->set_flashdata('message-success','Cadastro realizado com sucesso!');
+            $this->session->set_flashdata('message-success','Notificação cancelada com sucesso!');
         }else{
-            $this->session->set_flashdata('message','Algo deu errado na hora do cadastro...');
+            $this->session->set_flashdata('message','Algo deu errado na hora do cancelamento...');
         }         
         $this->index();
     }

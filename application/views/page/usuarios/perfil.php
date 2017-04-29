@@ -28,7 +28,7 @@
         <div class="clearfix"></div>
     </div>
     
-      <?php if($user['permissao']==0){?>
+      <?php if($usuario[0]['permissao']==0){?>
       <h2>Agendamentos realizados (<?=count($pedido)?>)</h2>
       <br/>
       <table class="table table-striped table-hover">
@@ -61,7 +61,7 @@
             <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedidos['idAgenda']?>"><?=$pedidos['idAgenda']?></a></td>
             <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedidos['idAgenda']?>"><?=$pedidos['nome']?></a></td>
             <td><?= dataConvertView($pedidos['data'])?></td>
-            <td><?=$pedidos['hora_entrega']?></td>
+            <td><?=$pedidos['hora_entrega']?>:00 - <?=($pedidos['hora_entrega']+2)?>:00</td>
             <td><?=$pedidos['nmr_pacotes']?></td>
             <td><span class="label label-<?=$label?>"><?=$text?></span></td>
             <td>

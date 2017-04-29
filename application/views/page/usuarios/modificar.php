@@ -34,9 +34,9 @@
                     <?php if($user['permissao']>0){
                       $checar = $usuario['permissao']==1;
                     ?>
-                    <label class="radio-inline"><input type="radio" name="tipoUsuario" id="1" value="1" <?php if($checar){echo "checked";}?>> Administrador</label>
+                    <label class="radio-inline"><input type="radio" name="tipoUsuario" id="1" value="1" <?php if(isset($checar)){echo "checked";}?>> Administrador</label>
                     <?php }?>
-                    <label class="radio-inline"><input type="radio" name="tipoUsuario" id="0" value="0" <?php if(!$checar){echo "checked";}?>> Fornecedor</label>
+                    <label class="radio-inline"><input type="radio" name="tipoUsuario" id="0" value="0" <?php if(!isset($checar)){echo "checked";}?>> Fornecedor</label>
                 </div>
               </div>
               <div class="form-group">

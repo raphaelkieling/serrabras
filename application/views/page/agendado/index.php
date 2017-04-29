@@ -8,7 +8,8 @@
               echo "<div class='alert alert-danger'>".$this->session->flashdata('message')."</div>";
           }
       ?>
-      <table class="table table-striped table-hover">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th>Local de descarga</th>
@@ -37,7 +38,7 @@
             <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedido['idAgenda']?>"><?=$pedido['nome']?></a></td>
             <td><?=$pedido['unome']?></td>
             <td><?=dataConvertView($pedido['data'])?></td>
-            <td><?=$pedido['hora_entrega']?></td>
+            <td><?=$pedido['hora_entrega']?>:00 - <?=($pedido['hora_entrega']+2)?>:00</td>
             <td><?=$pedido['nmr_pacotes']?></td>
             <td><span class="label label-<?=$label?>"><?=$text?></span></td>
             <td>
@@ -62,6 +63,7 @@
           <?php } ?>
         </tbody>
       </table>
+      </div>
 
     </div><!-- /.container -->
   </body>
