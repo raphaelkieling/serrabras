@@ -123,7 +123,6 @@ class C_usuarios extends CI_Controller {
                     }else{
                         $usuario_info = array(
                             'email' => $email,
-                            'senha' => md5($senha),
                             'permissao' => $permissao,
                             'nome' => $nome,
                             'empresa' => $empresa,
