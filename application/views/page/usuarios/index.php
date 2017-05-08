@@ -21,6 +21,7 @@
             <th>Ação</th>
           </tr>
         </thead>
+         
         <tbody>
          <?php
             foreach($usuario as $usuario){

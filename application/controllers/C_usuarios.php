@@ -53,7 +53,7 @@ class C_usuarios extends CI_Controller {
             $this->session->set_flashdata('message','Você não tem permissão');
             redirect('/');
         }
-
+        $this->load->model('M_usuarios');
         //Pegas as variaveis de cadastro
         $nome = $this->input->post('nomeUsuario');
         $empresa = $this->input->post('empresa');
@@ -75,47 +75,65 @@ class C_usuarios extends CI_Controller {
         $this->form_validation->set_rules('telefone',"Telefone",'required');
 
         $this->form_validation->set_rules('email',"Email",'required');
-        $this->form_validation->set_rules('password',"Senha",'required');
-        $this->form_validation->set_rules('passwordd',"Repetir Senha",'required|matches[password]');
 
-        if($this->form_validation->run() == FALSE){
-            $this->editarUsuario($idUsuario);
-        }else{
-            // Trata a imagem
-            $config['upload_path']          = 'assets/img/user_photo';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 500;
-            $config['max_width']            = 1250;
-            $config['max_height']           = 720;
-            $config['encrypt_name'] = TRUE;
-            $this->load->library('upload', $config);
-            
-            if (!$this->upload->do_upload('image'))
-            {
+        //verifica se a senha foi digitada
+        if(strlen($senha)>0){
+            $this->form_validation->set_rules('password',"Senha",'required');
+            $this->form_validation->set_rules('passwordd',"Repetir Senha",'required|matches[password]');
+        }
+
+        //verifica se foi colocada alguma imagem no input
+        if (!empty($_FILES['image']['name'])) {
+            if($this->form_validation->run() == FALSE){
+                $this->editarUsuario($idUsuario);
+            }else{
+                // Trata a imagem
+                $config['upload_path']          = 'assets/img/user_photo';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 500;
+                $config['max_width']            = 1250;
+                $config['max_height']           = 720;
+                $config['encrypt_name']         = TRUE;
+                $this->load->library('upload', $config);
+                
+                if (!$this->upload->do_upload('image'))
+                {
                     $error = array('error' => $this->upload->display_errors());
                     $this->session->set_flashdata('message',$error['error']);
                     $this->editarUsuario($idUsuario);
-            }
-            else
-            {
+                }
+                else
+                {
                     $data_img = array('upload_data' => $this->upload->data());
                     $imagem = $data_img['upload_data']['file_name'];
                     
                     //coloca tudo em uma variavel
-                    $usuario_info = array(
-                        'email' => $email,
-                        'senha' => md5($senha),
-                        'permissao' => $permissao,
-                        'nome' => $nome,
-                        'empresa' => $empresa,
-                        'endereco' => $endereco,
-                        'cidadeEstado' => $cidadeEstado,
-                        'telefone' => $telefone,
-                        'foto_perfil' => $imagem
-                    );
-
+                    if(strlen($senha)>0){
+                        $usuario_info = array(
+                            'email' => $email,
+                            'senha' => md5($senha),
+                            'permissao' => $permissao,
+                            'nome' => $nome,
+                            'empresa' => $empresa,
+                            'endereco' => $endereco,
+                            'cidadeEstado' => $cidadeEstado,
+                            'telefone' => $telefone,
+                            'foto_perfil' => $imagem
+                        );
+                    }else{
+                        $usuario_info = array(
+                            'email' => $email,
+                            'senha' => md5($senha),
+                            'permissao' => $permissao,
+                            'nome' => $nome,
+                            'empresa' => $empresa,
+                            'endereco' => $endereco,
+                            'cidadeEstado' => $cidadeEstado,
+                            'telefone' => $telefone,
+                            'foto_perfil' => $imagem
+                        );
+                    }
                     //cadastra email senha e imagem em um usuario
-                    $this->load->model('M_usuarios');
                     $resultado_cadastro = $this->M_usuarios->modificar($idUsuario,$usuario_info);
                     if($resultado_cadastro){
                         $this->session->set_flashdata('message-success','Alteração realizada com sucesso!');
@@ -123,8 +141,42 @@ class C_usuarios extends CI_Controller {
                         $this->session->set_flashdata('message','Algo deu errado na hora da alteração...');
                     }          
                     $this->index();
+                }
             }
+        }else{
+            //coloca tudo em uma variavel
+            if(strlen($senha)>0){
+                $usuario_info = array(
+                    'email' => $email,
+                    'senha' => md5($senha),
+                    'permissao' => $permissao,
+                    'nome' => $nome,
+                    'empresa' => $empresa,
+                    'endereco' => $endereco,
+                    'cidadeEstado' => $cidadeEstado,
+                    'telefone' => $telefone,
+                );
+            }else{
+                $usuario_info = array(
+                    'email' => $email,
+                    'permissao' => $permissao,
+                    'nome' => $nome,
+                    'empresa' => $empresa,
+                    'endereco' => $endereco,
+                    'cidadeEstado' => $cidadeEstado,
+                    'telefone' => $telefone,
+                );
+            }
+
+            $resultado_cadastro = $this->M_usuarios->modificar($idUsuario,$usuario_info);
+            if($resultado_cadastro){
+                $this->session->set_flashdata('message-success','Alteração realizada com sucesso!');
+            }else{
+                $this->session->set_flashdata('message','Algo deu errado na hora da alteração...');
+            }          
+            $this->index();
         }
+        
 }
     function perfil($id){
         $user = $this->session->userdata('user');
