@@ -166,14 +166,18 @@ class C_usuarios extends CI_Controller {
                     'telefone' => $telefone,
                 );
             }
-
-            $resultado_cadastro = $this->M_usuarios->modificar($idUsuario,$usuario_info);
-            if($resultado_cadastro){
-                $this->session->set_flashdata('message-success','Alteração realizada com sucesso!');
+            if($this->form_validation->run() == FALSE){
+                $this->editarUsuario($idUsuario);
             }else{
-                $this->session->set_flashdata('message','Algo deu errado na hora da alteração...');
-            }          
-            $this->index();
+                $resultado_cadastro = $this->M_usuarios->modificar($idUsuario,$usuario_info);
+                if($resultado_cadastro){
+                $this->session->set_flashdata('message-success','Alteração realizada com sucesso!');
+                }else{
+                    $this->session->set_flashdata('message','Algo deu errado na hora da alteração...');
+                }          
+                $this->index();
+            }
+            
         }
         
 }
