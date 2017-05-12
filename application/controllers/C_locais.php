@@ -9,6 +9,7 @@ class C_locais extends CI_Controller {
             redirect('/');
         }
 
+        $this->load->helper('currency_helper');
         $this->load->model('M_locais');
     	$data_locais = $this->M_locais->pegaLocais();
 
@@ -23,23 +24,28 @@ class C_locais extends CI_Controller {
             redirect('/');
         }
 
-    	$nome = $this->input->post('nome');
-    	$h_i = $this->input->post('horario_inicial');
-    	$h_f = $this->input->post('horario_final');
+        $dias = $this->diasSemana();
+    	$local = array(
+            "nome"              => $this->input->post('nome'),
+            "horario_inicial"   => $this->input->post('horario_inicial').":".$this->input->post('horario_inicial_minutos').":00",
+            "limite"     => $this->input->post('limitador'),
+            "dias"       => $dias
+        );
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('nome','Nome do Local','required');
 
         if(!$this->form_validation->run() ==FALSE){
             $this->load->model('M_locais');
-            $data = $this->M_locais->cadastro($nome,$h_i,$h_f);
+            $data = $this->M_locais->cadastro($local);
             
             if($data){
-            $this->session->set_flashdata('message-success','Cadastrado com sucesso');
+                $this->session->set_flashdata('message-success','Cadastrado com sucesso');
             }else{
                 $this->session->set_flashdata('message','Houve algum erro ao cadastrar');
             }
         }
+
         $this->index();
     }  
     function altera(){
@@ -83,5 +89,28 @@ class C_locais extends CI_Controller {
             $this->session->set_flashdata('message','Houve algum erro ao excluir');
         }
         $this->index();
+    }
+
+    public function diasSemana(){
+        $segunda = $this->input->post('segunda');
+        $terca = $this->input->post('terca');
+        $quarta = $this->input->post('quarta');
+        $quinta = $this->input->post('quinta');
+        $sexta = $this->input->post('sexta');
+        $sabado = $this->input->post('sabado');
+        $domingo = $this->input->post('domingo');
+
+        $dias = "";
+        
+        if(isset($segunda)){$dias = $dias."1";}
+        if(isset($terca)){$dias = $dias.",2";}
+        if(isset($quarta)){$dias = $dias.",3";}
+        if(isset($quinta)){$dias = $dias.",4";}
+        if(isset($sexta)){$dias = $dias.",5";}
+        if(isset($sabado)){$dias = $dias.",6";}
+        if(isset($domingo)){$dias = $dias.",0";}
+
+        return $dias;
+
     }
 }

@@ -1,7 +1,7 @@
 <?php
 class M_locais extends CI_Model{
-	function cadastro($nome,$h_i,$h_f){
-		$this->db->insert('local',array('nome'=>$nome,'horario_inicial'=>$h_i,'horario_final'=>$h_f));
+	function cadastro($data_post){
+		$this->db->insert("local",$data_post);
 		if($this->db->affected_rows()>0){
 			return true;
 		}else{
