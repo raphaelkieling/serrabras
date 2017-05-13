@@ -154,7 +154,7 @@
 						<br>
 						<div class="form-group">
 							<label for="semana">Dias da Semana</label>
-							<small>Quais os dias de funcionamento?</small>
+							<small><br>Quais os dias que estarão em funcionamento?</small>
 							<br>
 							<input type="checkbox" name="segunda"> Segunda-feira<br>
 							<input type="checkbox" name="terca"> Terça-feira<br>
@@ -183,7 +183,7 @@
 								<th>Local</th>
 								<th>Início</hd>
 								<th>Limite de Blocos</th>
-								<th>Dias</th>
+								<th>Dias Funcionando</th>
 								<th>Ações</th>
 							</tr>
 						</thead>

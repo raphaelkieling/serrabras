@@ -102,13 +102,13 @@ class C_locais extends CI_Controller {
 
         $dias = "";
         
-        if(isset($segunda)){$dias = $dias."1";}
+        if(isset($domingo)){$dias = $dias.",0";}
+        if(isset($segunda)){$dias = $dias.",1";}
         if(isset($terca)){$dias = $dias.",2";}
         if(isset($quarta)){$dias = $dias.",3";}
         if(isset($quinta)){$dias = $dias.",4";}
         if(isset($sexta)){$dias = $dias.",5";}
-        if(isset($sabado)){$dias = $dias.",6";}
-        if(isset($domingo)){$dias = $dias.",0";}
+        if(isset($sabado)){$dias = $dias.",6";}       
 
         return $dias;
     }

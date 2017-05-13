@@ -23,17 +23,18 @@
     function diasLabel($dias){
         $dias_array = explode(',',$dias);
         for($i = 0; $i < count($dias_array); $i++){
-            if(!$dias_array[$i]==""){
-                if($dias_array[$i] == 0){$day = "Dom";}
-                if($dias_array[$i] == 1){$day = "Seg";}
-                if($dias_array[$i] == 2){$day = "Ter";}
-                if($dias_array[$i] == 3){$day = "Qua";}
-                if($dias_array[$i] == 4){$day = "Qui";}
-                if($dias_array[$i] == 5){$day = "Sex";}
-                if($dias_array[$i] == 6){$day = "Sab";}
+            $dia = strval($dias_array[$i]);
 
-                echo "<span class='label label-primary'>".$day."</span> ";
-            }
+            if($dia == ""){$day = "";}
+            if($dia == "0"){$day = "Dom";}
+            if($dia == "1"){$day = "Seg";}
+            if($dia == "2"){$day = "Ter";}
+            if($dia == "3"){$day = "Qua";}
+            if($dia == "4"){$day = "Qui";}
+            if($dia == "5"){$day = "Sex";}
+            if($dia == "6"){$day = "Sab";}
+
+            echo "<span class='label label-success'>".$day."</span> ";
         }
     }
 ?>
