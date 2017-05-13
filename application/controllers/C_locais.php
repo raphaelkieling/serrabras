@@ -28,8 +28,8 @@ class C_locais extends CI_Controller {
     	$local = array(
             "nome"              => $this->input->post('nome'),
             "horario_inicial"   => $this->input->post('horario_inicial').":".$this->input->post('horario_inicial_minutos').":00",
-            "limite"     => $this->input->post('limitador'),
-            "dias"       => $dias
+            "limite"            => $this->input->post('limitador'),
+            "dias"              => $dias
         );
 
         $this->load->library('form_validation');
@@ -111,6 +111,5 @@ class C_locais extends CI_Controller {
         if(isset($domingo)){$dias = $dias.",0";}
 
         return $dias;
-
     }
 }

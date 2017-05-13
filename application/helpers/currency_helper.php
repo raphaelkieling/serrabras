@@ -19,15 +19,15 @@
         return $dia."/".$mes."/".$ano;
         
     }
-
+    
     function diasLabel($dias){
         $dias_array = explode(',',$dias);
         for($i = 0; $i < count($dias_array); $i++){
             if(!$dias_array[$i]==""){
-                if($dias_array[$i] == 0){$day = "D";}
-                if($dias_array[$i] == 1){$day = "S";}
-                if($dias_array[$i] == 2){$day = "T";}
-                if($dias_array[$i] == 3){$day = "Q";}
+                if($dias_array[$i] == 0){$day = "Dom";}
+                if($dias_array[$i] == 1){$day = "Seg";}
+                if($dias_array[$i] == 2){$day = "Ter";}
+                if($dias_array[$i] == 3){$day = "Qua";}
                 if($dias_array[$i] == 4){$day = "Qui";}
                 if($dias_array[$i] == 5){$day = "Sex";}
                 if($dias_array[$i] == 6){$day = "Sab";}

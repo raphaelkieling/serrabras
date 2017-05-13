@@ -24,7 +24,7 @@
 					<div class="row">
 						<div class="col-md-6 col-xs-6">
 							<div class="form-group">
-								<label for="horario_inicio">Horário de Início</label>
+								<label for="horario_inicio">Hr Inicial</label>
 								<select class="form-control" onchange="criaHoras()" name="horario_inicial" id="horario_inicial">
 									<option value="01">01</option>
 									<option value="02">02</option>
@@ -53,7 +53,11 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-md-6 col-xs-6">
+						<div class="col-md-1 col-xs-1">
+							<label for=""></label>
+							<p style="margin-top:10px"><b>:</b></p>
+						</div>
+						<div class="col-md-4 col-xs-4">
 							<div class="form-group">
 								<label for="horario_inicio">Minutos</label>
 								<select class="form-control" onchange="criaHoras()" name="horario_inicial_minutos" id="horario_inicial_minutos">
@@ -178,7 +182,7 @@
 								<th>Id</th>
 								<th>Local</th>
 								<th>Início</hd>
-								<th>Término</th>
+								<th>Limite de Blocos</th>
 								<th>Dias</th>
 								<th>Ações</th>
 							</tr>
@@ -189,8 +193,8 @@
 								<td><?=$locais['idLocal']?></td>
 								<td><?=$locais['nome']?></td>
 								<td><?=$locais['horario_inicial']?></td>
-								<td><?=diasLabel($locais['dias'])?></td>
 								<td><?=$locais['limite']?></td>
+								<td><?=diasLabel($locais['dias'])?></td>
 								<td>
 									<button type='button' class='btn btn-warning' data-toggle='modal' data-target='.myModal<?=$locais['idLocal']?>'>Modificar</button> 
 									<a href='<?=base_url()?>locais/deleta/<?=$locais['idLocal']?>'class='btn btn-default btn-danger'>Deletar</a>

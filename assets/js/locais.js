@@ -4,6 +4,7 @@ var limitador_input = $('#limitador_input');
 var h_i = $('#horario_inicial');
 var h_i_m = $('#horario_inicial_minutos');
 var h_i_f = h_i.val()+h_i_m.val();
+
 //serve SOMENTE para criar os horários dinamicamente na pagina de locais para a vizualização
 function criaHoras(){
     moment.locale('pt-BR');
@@ -15,7 +16,7 @@ function criaHoras(){
 
     //começa a criar os horários
     var hora_antiga = moment(h_i_f,'hmm').format('HH:mm');
-    for(var i = 2;i<limitador.val();i+=2){
+    for(var i = 2;i<limitador.val()*2+1;i+=2){
         var hora_nova = moment(h_i_f,'hmm').add(i, 'hours').format('HH:mm');
 
         $('.horarios-label').append("<div class='label label-primary'>"+hora_antiga+" - "+hora_nova+"</div><br>");
@@ -27,14 +28,18 @@ function criaHoras(){
      $('.horarios-label').append("<div class='label label-success'>"+"Até - "+hora_final+"</div><br>");
 }
 
+//MUDA o valor só do Input Number do lado do Input Range
 function mudaRangeInput(){
     limitador_input.val(limitador.val());
 }
 
+//MUDA o valor só do Range
 function mudaRangeRange(){
     limitador.val(limitador_input.val());
     criaHoras();
 }
+
+//Atualizar a hora final para usar no momentjs
 function atualizaHoraFinal(){
      h_i_f = h_i.val()+h_i_m.val();
 }
