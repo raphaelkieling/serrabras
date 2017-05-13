@@ -68,6 +68,7 @@ class C_agendamento extends CI_Controller {
         $this->load->model('M_agendamento');
         $datal = $this->M_agendamento->buscahorario($data_convertida,$local);
 
+        // echo "{$data_convertida} - {$local}";
         header('Content-type:application/json');
         echo json_encode($datal);
     }

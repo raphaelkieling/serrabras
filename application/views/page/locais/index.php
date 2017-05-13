@@ -135,7 +135,7 @@
 										<input type="number" id="limitador_input" class="form-control" onchange="mudaRangeRange();">
 									</div>
 									<div class="col-md-9">
-										<input type="range" onchange="criaHoras();mudaRangeInput();" class="form-control" id="limitador" name="limitador" max="24" value="0">
+										<input type="range" onchange="criaHoras();mudaRangeInput();" class="form-control" id="limitador" name="limitador" max="12" value="0">
 									</div>
 								</div>
 							</div>

@@ -90,8 +90,10 @@
                              Olá <b><?=$user['email']?></b>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownLogin">
+                            <?php if($user['permissao']>=$user_permission){?>
                             <li><a href="<?=base_url()?>perfil/<?= $user['idUsuario']?>">Configurações de perfil</a></li>
                             <li role="separator" class="divider"></li>
+                            <?php } ?>
                             <li><a href="<?=base_url()?>login/sair">Sair</a></li>
                         </ul>
                     </div>

@@ -62,7 +62,7 @@
                 <p class="help-block">São permitidas imagens no formato jpg, jpeg, gif e png.</p>
               </div>
 
-              <button class="btn btn-success" type="submit">Cadastrar</button> <a class="btn btn-danger" href="<?=base_url()?>usuarios">Cancelar</a>
+              <button class="btn btn-success" type="submit">Modificar</button> <a class="btn btn-danger" href="<?=base_url()?>usuarios">Cancelar</a>
               <br><br>
             <?= form_close();?>
         </div>

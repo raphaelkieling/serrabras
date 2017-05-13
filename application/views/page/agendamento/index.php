@@ -31,11 +31,11 @@
                     <!--Definir local-->
                     <div class="form-group">
                         <label for="local"><span class="glyphicon glyphicon-road"></span> Local de descarga:</label>
-                        <select onchange='carregaCalendario(); limpaData();' class="form-control" id="local" name="local" required>
+                        <select onchange='limpaData(); carregaCalendario(); ' class="form-control" id="local" name="local" required>
                             <option value='null'>Selecione um local</option>
                             <?php 
                                 foreach($locais as $locais){
-                                    echo "<option data-dias='{$locais['dias']}' value='{$locais['idLocal']}'>{$locais['nome']}</option>";
+                                    echo "<option data-dias='{$locais['dias']}' data-init='{$locais['horario_inicial']}' data-limite='{$locais['limite']}' value='{$locais['idLocal']}'>{$locais['nome']}</option>";
                                 }
                             ?>
                         </select>
@@ -57,11 +57,6 @@
                 <!--<div class="hora-aberta">
                     <p class="text-center">5:00-7:00</p>
                 </div>-->
-            </div>
-            <div class='div-horas-message'>
-                <div class="alert alert-warning">
-                    <h4>Escolha um local e hora válidos. Certifique-se de todos os campos estarem preenchidos.</h4>
-                </div>
             </div>
             <!--Final div horas-->
             <br><br>
