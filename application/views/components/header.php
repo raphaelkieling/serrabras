@@ -59,9 +59,22 @@
                         </div>
                     </li>
                     <?php if($user['permissao']>=$user_permission){?>
-                    <li><a href="<?=base_url()?>locais" class=""><span class="glyphicon glyphicon-map-marker"></span> Locais</a></li>
-                    <li><a href="<?=base_url()?>medidas" class=""><span class="glyphicon glyphicon-tree-conifer"></span> Medidas</a></li>
-                    <li><a href="<?=base_url()?>notificacao" class=""><span class="glyphicon glyphicon-bell"></span> Notificações</a></li>
+                    <li>
+                        <div class="dropdown">
+                            <button class="navbar-btn btn dropdown-toggle btn-clear" id="dropdownUser" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-map-marker"></span> 
+                                Locais
+                            </button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+                                <li><a href="<?=base_url()?>locais"><span class="glyphicon glyphicon-map-marker"></span> Locais</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="<?=base_url()?>gerenciadordedias"><span class="glyphicon glyphicon-map-marker"></span> Gerenciar Dias</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="<?=base_url()?>medidas"><span class="glyphicon glyphicon-tree-conifer"></span> Medidas</a></li>
+                    <li><a href="<?=base_url()?>notificacao"><span class="glyphicon glyphicon-bell"></span> Notificações</a></li>
                     <?php } ?>
 
                     <?php if($user['permissao']>=$user_permission){?>               

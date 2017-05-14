@@ -1,14 +1,16 @@
-var limitador = $('#limitador');
-var limitador_input = $('#limitador_input');
+var limitador = $('.limitador');
+var limitador_input = $('.limitador_input');
 
-var h_i = $('#horario_inicial');
-var h_i_m = $('#horario_inicial_minutos');
+var h_i = $('.horario_inicial');
+var h_i_m = $('.horario_inicial_minutos');
 var h_i_f = h_i.val()+h_i_m.val();
 
 //serve SOMENTE para criar os horários dinamicamente na pagina de locais para a vizualização
 function criaHoras(){
     moment.locale('pt-BR');
     atualizaHoraFinal();
+    console.log(h_i_f);
+    
     $('.horarios-label').html("");
     //mostra o primeiro horário
     var hora_inicial_moment = moment(h_i_f,'hmm').format('HH:mm');

@@ -34,6 +34,7 @@ class C_locais extends CI_Controller {
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('nome','Nome do Local','required');
+        $this->form_validation->set_rules('limitador','Limite','required|integer');
 
         if(!$this->form_validation->run() ==FALSE){
             $this->load->model('M_locais');
@@ -49,19 +50,24 @@ class C_locais extends CI_Controller {
         $this->index();
     }  
     function altera(){
-        $id =$this->input->post('idLocal');
-        $data_post = array(
-            'nome'           =>$this->input->post('nomeLocal'),
-            'horario_inicial'=>$this->input->post('iLocal'),
-            'horario_final'  =>$this->input->post('fLocal')
+        $id =$this->input->post('id_local_modal');
+
+        $dias = $this->diasSemana();
+
+    	$local = array(
+            "nome"              => $this->input->post('nome_modal'),
+            "horario_inicial"   => $this->input->post('horario_inicial_modal').":".$this->input->post('horario_inicial_minutos_modal').":00",
+            "limite"            => $this->input->post('limitador_modal'),
+            "dias"              => $dias
         );
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('nomeLocal','Nome','required');
+        $this->form_validation->set_rules('nome_modal','Nome','required');
+        $this->form_validation->set_rules('limitador_modal','Limite','required|integer');
 
         if(!$this->form_validation->run() ==FALSE){
             $this->load->model('M_locais');
-            $data = $this->M_locais->altera($id,$data_post);
+            $data = $this->M_locais->altera($id,$local);
             
             if($data){
                 $this->session->set_flashdata('message-success','Alterado com sucesso');
@@ -88,6 +94,7 @@ class C_locais extends CI_Controller {
         }else{
             $this->session->set_flashdata('message','Houve algum erro ao excluir');
         }
+        
         $this->index();
     }
 

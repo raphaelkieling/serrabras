@@ -30,6 +30,8 @@ $route['locais/cadastro'] = 'C_locais/cadastro';
 $route['locais/altera'] = 'C_locais/altera';
 $route['locais/deleta/(:num)'] = 'C_locais/deleta/$1';
 
+$route['gerenciadordedias'] = 'C_gerenciadordedias/index';
+
 $route['notificacao'] = 'C_notificacao/index';
 $route['notificacao/cadastrar'] = 'C_notificacao/cadastrar';
 $route['notificacao/cancela/(:num)'] = 'C_notificacao/cancela/$1';
