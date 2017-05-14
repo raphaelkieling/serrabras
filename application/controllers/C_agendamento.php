@@ -32,8 +32,10 @@ class C_agendamento extends CI_Controller {
             "data"         =>dataConvert($this->input->post('datepicker'),"mysql"),
             "hora_entrega" =>$this->input->post('hora')
         );
+
         $this->load->model('M_agendamento');
         $data_idAgendamento = $this->M_agendamento->cadastrarAgendamento($data_post);
+        
         $data_post_pedido = array(
             'codAgendamento'=> $data_idAgendamento,
             'nmr_pacotes'   => $this->input->post('nmr_pacotes[]'),

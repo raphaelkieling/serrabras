@@ -31,6 +31,8 @@ $route['locais/altera'] = 'C_locais/altera';
 $route['locais/deleta/(:num)'] = 'C_locais/deleta/$1';
 
 $route['gerenciadordedias'] = 'C_gerenciadordedias/index';
+$route['gerenciadordedias/cadastro'] = 'C_gerenciadordedias/cadastro';
+$route['gerenciadordedias/deleta/(:num)'] = 'C_gerenciadordedias/deleta/$1';
 
 $route['notificacao'] = 'C_notificacao/index';
 $route['notificacao/cadastrar'] = 'C_notificacao/cadastrar';
