@@ -22,6 +22,7 @@ function pegaDiasLiberarLocais(){
 function carregaCalendario(){
     var semana_funcionando   = local.find(':selected').data("dias");
     bloquear = converteSemanaBloqueada(semana_funcionando);
+    console.log("tenh oque bloquear isso: "+bloquear_dia);
 
     $('#dateval').datepicker("destroy");
     $('#dateval').datepicker({
@@ -33,22 +34,32 @@ function carregaCalendario(){
         autoclose: true,
         //datesDisabled:['19/05/2017'],
         beforeShowDay: function (date){
-            var diaDate = date.getYear()+"-"+date.getMonth()+"-"+date.getDate();
+            console.log("BEFOREsHOWdAY ----------------");
+            var diaDate = date.getYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
             var contador_de_achados = 0;
-
+            
+            console.log("-contador: "+contador_de_achados);
             if(typeof libera_dia[0] !=='undefined'){
                 for(var i=0;i<libera_dia.length;i++){
                     var dia = libera_dia[i].getYear()+"-"+libera_dia[i].getMonth()+"-"+libera_dia[i].getDate();
-
+                    console.log( dia +" ---------- "+diaDate);
                     if(diaDate == dia){
                         contador_de_achados++;
-                        return {
-                            classes:'active'
-                        };
+                        return{classes:"dayfree"};
                     }
                 }
             }
-            if(contador_de_achados==0 || typeof libera_dia[0] === 'undefined'){
+            if(typeof bloquear_dia[0] !=='undefined'){
+                console.log("dia bloqueado: "+bloquear_dia);
+                for(var i=0;i<bloquear_dia.length;i++){
+                    var dia_b = bloquear_dia[i].getYear()+"-"+bloquear_dia[i].getMonth()+"-"+bloquear_dia[i].getDate();
+                    if(diaDate == dia_b){
+                        contador_de_achados++;
+                        return false;
+                    }
+                }
+            }
+            if(contador_de_achados==0){
                 for(var i =0;i<bloquear.length;i++)
                 {
                     if(date.getDay() == bloquear[i]){
@@ -56,7 +67,7 @@ function carregaCalendario(){
                     }
                 } 
             }
-            
+            console.log("-contador: "+contador_de_achados);
         }
     });
     $('#dateval').datepicker("refresh");

@@ -30,7 +30,7 @@
           <tr>
             <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$agendamento['idAgenda']?>"><?=$agendamento['nome']?></a></td>
             <td><?=dataConvertView($agendamento['data'])?></td>
-            <td><?=$agendamento['hora_entrega']?>:00 - <?=($agendamento['hora_entrega']+2)?>:00</td>
+            <td><?=$agendamento['hora_entrega']?></td>
             <td><?=$agendamento['nmr_pacotes']?></td>
             <td><span class="label label-<?=$label?>"><?=$text?></span></td>
             <td>

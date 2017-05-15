@@ -19,7 +19,7 @@
 
                 <p>
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    Dia <?=dataConvertView($pedidos[0]['data'])?> – <?=$pedidos[0]['hora_entrega']?>:00 - <?=($pedidos[0]['hora_entrega']+2)?>:00
+                    Dia <?=dataConvertView($pedidos[0]['data'])?> – <?=$pedidos[0]['hora_entrega']?> - <?=($pedidos[0]['hora_entrega']+2)?>:00
                 </p>
                     
                 <p>

@@ -45,18 +45,24 @@ function retornaSemZero(data){
 }
 function converteDias(data){
     libera_dia =[];
+    bloquear_dia = [];
     for(var i=0;i<data.length;i++){
-        var data_gerenciadora   = convertDataMysql(data[i]['data']);
+        console.log('CONVERTENDO ------------------------');
+        var data_gerenciadora  = convertDataMysql(data[i]['data']);
         var data_dia           = retornaSemZero(data_gerenciadora[2]);
         var data_mes           = retornaSemZero(data_gerenciadora[1]);
         var data_ano           = data_gerenciadora[0];    
 
         var data_resultado = data_ano+"-"+data_mes+"-"+data_dia;
+        console.log("resultado da conversão" + data_resultado);
 
         if(data[i]['tipo']=="liberar"){
-            libera_dia.push(new Date(data_resultado));
+            libera_dia.push(new Date(data_ano,data_mes,data_dia));
+            console.log('CONVERTENDO ------------------------');
+
         }else{
-            bloquear_dia.push(new Date(data_resultado));
+            bloquear_dia.push(new Date(data_ano,data_mes,data_dia));
+            console.log('CONVERTENDO ------------------------');
         }
     }
 }
