@@ -29,6 +29,7 @@ $route['locais'] = 'C_locais/index';
 $route['locais/cadastro'] = 'C_locais/cadastro';
 $route['locais/altera'] = 'C_locais/altera';
 $route['locais/deleta/(:num)'] = 'C_locais/deleta/$1';
+$route['locais/pegadias/(:num)']= 'C_locais/pegaDias/$1';
 
 $route['gerenciadordedias'] = 'C_gerenciadordedias/index';
 $route['gerenciadordedias/cadastro'] = 'C_gerenciadordedias/cadastro';

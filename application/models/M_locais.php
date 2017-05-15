@@ -12,6 +12,10 @@ class M_locais extends CI_Model{
 		$this->db->order_by('idLocal','desc');
 		return $this->db->get('local')->result_array();
 	}
+	function pegaDias($idLocal){
+		$this->db->where('codLocal',$idLocal);
+		return $this->db->get('dia')->result_array();
+	}
 	function altera($id,$data_post){
 		$this->db->where('idLocal',$id);
 		$this->db->update('local',$data_post);

@@ -31,7 +31,7 @@
                     <!--Definir local-->
                     <div class="form-group">
                         <label for="local"><span class="glyphicon glyphicon-road"></span> Local de descarga:</label>
-                        <select onchange='limpaData(); carregaCalendario(); ' class="form-control" id="local" name="local" required>
+                        <select onchange='pegaDiasLiberarLocais();' class="form-control" id="local" name="local" required>
                             <option value='null'>Selecione um local</option>
                             <?php 
                                 foreach($locais as $locais){
@@ -89,5 +89,6 @@
 </div>
 <script src="<?=base_url()?>assets/js/bootstrap-datepicker.min.js"></script>
 <script src="<?=base_url()?>assets/js/bootstrap-datepicker.pt-BR.min.js"></script>
+<script src="<?=base_url()?>assets/js/converter.js"></script>
 <script src="<?=base_url()?>assets/js/agendamento.js"></script>
 </body>

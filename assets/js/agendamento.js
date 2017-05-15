@@ -1,46 +1,63 @@
 var local = $('#local');
 var hora_selecionada = "";
 var hora_form = $('#hora_form');
+var bloquear = "";
+
+var libera_dia   = []; //libera um dia escolhido
+var bloquear_dia = []; // idem
 
 formAdd();
 pegaMedidas();
-function converteSemanaBloqueada(semana){
-    var semana = semana.split(',');
-    console.log("Encontrar e liberar: "+semana);
-    var semana_dias  = [0,1,2,3,4,5,6];
-    var semana_final = "";
-    var encontrou    = false;
 
-    console.log("NÃO Achados ----------------");
-    for(var i = 0; i < semana_dias.length ;i++){
-        for(var j = 1; j < semana.length ;j++){
-            if(semana_dias[i] == semana[j]){
-                encontrou = true;
-            }
+function pegaDiasLiberarLocais(){
+    $.ajax({
+        url:'locais/pegadias/'+local.val(),
+        success:function(data){
+            converteDias(data);
+            limpaData();
+            carregaCalendario();
         }
-        if(!encontrou){
-            semana_final = semana_final+","+semana_dias[i];
-            console.log(semana_dias[i] + " <<");
-        }
-        encontrou = false;
-    }
-    console.log("BLOQUEADOS: " +semana_final);
-    return semana_final;
+    }); 
 }
 function carregaCalendario(){
     var semana_funcionando   = local.find(':selected').data("dias");
-    var bloquear = converteSemanaBloqueada(semana_funcionando);
+    bloquear = converteSemanaBloqueada(semana_funcionando);
 
     $('#dateval').datepicker("destroy");
     $('#dateval').datepicker({
-        startDate: "date",
         language:"pt-BR",
-        daysOfWeekDisabled: bloquear,
+        //daysOfWeekDisabled: bloquear,
         todayBtn: true,
         todayHighlight: true,
         calendarWeeks: true,
         autoclose: true,
-        datesDisabled:['19/05/2017']
+        //datesDisabled:['19/05/2017'],
+        beforeShowDay: function (date){
+            var diaDate = date.getYear()+"-"+date.getMonth()+"-"+date.getDate();
+            var contador_de_achados = 0;
+
+            if(typeof libera_dia[0] !=='undefined'){
+                for(var i=0;i<libera_dia.length;i++){
+                    var dia = libera_dia[i].getYear()+"-"+libera_dia[i].getMonth()+"-"+libera_dia[i].getDate();
+
+                    if(diaDate == dia){
+                        contador_de_achados++;
+                        return {
+                            classes:'active'
+                        };
+                    }
+                }
+            }
+            if(contador_de_achados==0 || typeof libera_dia[0] === 'undefined'){
+                for(var i =0;i<bloquear.length;i++)
+                {
+                    if(date.getDay() == bloquear[i]){
+                        return false;
+                    }
+                } 
+            }
+            
+        }
     });
     $('#dateval').datepicker("refresh");
 
@@ -69,11 +86,6 @@ function criaHorarios(){
     }) 
 
 }
-function convertHoraParaEsconder(hora){
-    var horario = hora;
-    var resultado = horario.split(':');
-    return resultado[0]+"-"+resultado[1];
-}
 function limpaHorasSelecionadas(){
     $('.hora-aberta').removeClass("hora-importante");
     hora_selecionada="";
@@ -101,10 +113,6 @@ function apagaHorariosUsados(data){
         $('#'+convertHoraParaEsconder(horario)).hide();
         console.log("Apaga >> " + convertHoraParaEsconder(horario));
     }
-}
-function convertData(data){
-    var calendario = data.split('/');
-    return calendario[0]+"-"+calendario[1]+"-"+calendario[2];
 }
 
 function limpaData(){

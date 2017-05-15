@@ -97,6 +97,13 @@ class C_locais extends CI_Controller {
         
         $this->index();
     }
+    function pegaDias($idLocal){
+        $this->load->model('M_locais');
+    	$data = $this->M_locais->pegaDias($idLocal);
+
+        header('Content-type:application/json');
+        echo json_encode($data);
+    }
 
     public function diasSemana(){
         $segunda = $this->input->post('segunda');
