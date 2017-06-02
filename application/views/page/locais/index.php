@@ -19,7 +19,7 @@
 				<div class="panel-body">
 					<div class="form-group">
 						<label for="nome">Nome do local</label>
-						<input name="nome" id="nome" type="text" class="form-control">
+						<input name="nome" id="nome" type="text" class="form-control" value="">
 					</div>
 					<div class="row">
 						<div class="col-md-6 col-xs-6">
@@ -196,8 +196,14 @@
 								<td><?=$locais['limite']?></td>
 								<td><?=diasLabel($locais['dias'])?></td>
 								<td>
-									<button type='button' class='btn btn-warning' data-toggle='modal' data-target='.myModal<?=$locais['idLocal']?>'>Modificar</button> 
-									<a href='<?=base_url()?>locais/deleta/<?=$locais['idLocal']?>'class='btn btn-default btn-danger'>Deletar</a>
+									<div class="row">
+										<div class="col-md-6">
+											<button type='button' class='btn btn-warning' data-toggle='modal' data-target='.myModal<?=$locais['idLocal']?>'>Modificar</button> 
+										</div>
+										<div class="col-md-6">
+											<a href='<?=base_url()?>locais/deleta/<?=$locais['idLocal']?>'class='btn btn-default btn-danger'>Deletar</a>
+										</div>
+									</div>
 								</td>
 							</tr>
 
@@ -229,7 +235,8 @@
 												<div class="form-group">
 													<input type="hidden" name="id_local_modal" value="<?=$locais['idLocal']?>">
 													<label for="horario_inicial_modal">Nova hora</label>
-													<select class="form-control"name="horario_inicial_modal">
+													<select class="form-control"name="horario_inicial_modal" required>
+														<option>--</option>
 														<option value="01">01</option>
 														<option value="02">02</option>
 														<option value="03">03</option>
@@ -253,7 +260,6 @@
 														<option value="21">21</option>
 														<option value="22">22</option>
 														<option value="23">23</option>
-														<option value="24" selected>00</option>
 													</select>
 												</div>
 											</div>
@@ -264,8 +270,9 @@
 											<div class="col-md-4 col-xs-4">
 												<div class="form-group">
 													<label for="horario_inicial_minutos_modal">Minutos</label>
-													<select class="form-control" name="horario_inicial_minutos_modal">
-														<option value="00" selected>00</option>
+													<select class="form-control" name="horario_inicial_minutos_modal" required>
+														<option>--</option>
+														<option value="00">00</option>
 														<option value="01">01</option>
 														<option value="02">02</option>
 														<option value="03">03</option>
@@ -357,8 +364,14 @@
 									</div>
 									<!-- Fechamento da ROW horario inicial -->
 									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-										<button type="submit" class="btn btn-primary">Alterar</button>
+										<div class="row">
+											<div class="col-md-6">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+											</div>
+											<div class="col-md-6">
+												<button type="submit" class="btn btn-primary">Alterar</button>
+											</div>
+										</div>
 										<?=form_close()?>
 									</div>
 									</div><!-- /.modal-content -->

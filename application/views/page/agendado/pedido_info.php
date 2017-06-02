@@ -19,7 +19,7 @@
 
                 <p>
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    Dia <?=dataConvertView($pedidos[0]['data'])?> – <?=$pedidos[0]['hora_entrega']?> - <?=($pedidos[0]['hora_entrega']+2)?>:00
+                    Dia <?=dataConvertView($pedidos[0]['data'])?> – <span class="hora_view"><?=$pedidos[0]['hora_entrega']?></span>
                 </p>
                     
                 <p>
@@ -68,4 +68,8 @@
       </table>
 
     </div><!-- /.container -->
+    <script src="<?=base_url()?>assets/js/converter.js"></script>
+    <script>
+        adicionaDuasHoras();
+    </script>
 </html>

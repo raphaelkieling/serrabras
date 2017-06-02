@@ -11,6 +11,7 @@
         if($this->session->flashdata('message-success')){
             echo "<div class='alert alert-success'>".$this->session->flashdata('message-success')."</div>";
         }
+        echo validation_errors("<div class='alert alert-danger'>","</div>");
     ?>
     <div class="row">
         <div class="col-md-4">
@@ -30,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Motivo</label>
-                        <input type="text" class="form-control" placeholder="Porque bloquear/liberar essa data?" name="motivo">
+                        <input type="text" class="form-control" placeholder="Porque bloquear/liberar essa data?" name="motivo" value="<?php echo set_value('motivo'); ?>">
                     </div>
                     <div class="form-group">
                         <label for="">Data</label>

@@ -35,14 +35,19 @@ class C_gerenciadordedias extends CI_Controller {
             'data' =>dataConvert($this->input->post('datepicker'),"mysql"),
             'tipo' =>$this->input->post('tipo'),
         );
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('motivo','Motivo','required|trim');
+        $this->form_validation->set_rules('datepicker','Data','required|trim');
+        $this->form_validation->set_rules('tipo','Tipo','required|trim');
 
-        $this->load->model('M_gerenciadordedias');
-        $data = $this->M_gerenciadordedias->cadastrar($dias);
-
-        if($data){
-            $this->session->set_flashdata('message-success','Cadastrado com sucesso');
-        }else{
-            $this->session->set_flashdata('message','Houve algum erro ao cadastrar');
+        if(!$this->form_validation->run() ==FALSE){
+            $this->load->model('M_gerenciadordedias');
+            $data = $this->M_gerenciadordedias->cadastrar($dias);
+            if($data){
+                $this->session->set_flashdata('message-success','Cadastrado com sucesso');
+            }else{
+                $this->session->set_flashdata('message','Houve algum erro ao cadastrar');
+            }
         }
         $this->index();
     }

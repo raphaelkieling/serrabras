@@ -30,7 +30,7 @@
           <tr>
             <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$agendamento['idAgenda']?>"><?=$agendamento['nome']?></a></td>
             <td><?=dataConvertView($agendamento['data'])?></td>
-            <td><?=$agendamento['hora_entrega']?></td>
+            <td><span class="hora_view"><?=$agendamento['hora_entrega']?></span></td>
             <td><?=$agendamento['nmr_pacotes']?></td>
             <td><span class="label label-<?=$label?>"><?=$text?></span></td>
             <td>
@@ -57,5 +57,9 @@
       </table>
 
     </div><!-- /.container -->
+    <script src="<?=base_url()?>assets/js/converter.js"></script>
+    <script>
+        adicionaDuasHoras();
+    </script>
   </body>
 </html>

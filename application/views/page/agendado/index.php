@@ -38,7 +38,7 @@
             <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$pedido['idAgenda']?>"><?=$pedido['nome']?></a></td>
             <td><?=$pedido['unome']?></td>
             <td><?=dataConvertView($pedido['data'])?></td>
-            <td><?=$pedido['hora_entrega']?></td>
+            <td><span class="hora_view"><?=$pedido['hora_entrega']?></span></td>
             <td><?=$pedido['nmr_pacotes']?></td>
             <td><span class="label label-<?=$label?>"><?=$text?></span></td>
             <td>
@@ -66,5 +66,9 @@
       </div>
 
     </div><!-- /.container -->
+    <script src="<?=base_url()?>assets/js/converter.js"></script>
+    <script>
+        adicionaDuasHoras();
+    </script>
   </body>
 </html>

@@ -66,3 +66,16 @@ function converteDias(data){
         }
     }
 }
+
+function adicionaDuasHoras(){
+    $('.hora_view').each(function(index){
+        console.log($(this).text());
+
+        var hora_convertida = $(this).text().substring(5,0)+":00";
+        var hora_inicio_m = moment(hora_convertida,'hmmss').format('HH:mm');
+        var hora_final_m = moment(hora_convertida,'hmmss').add(2,'hours').format('HH:mm');
+
+        $(this).html(hora_inicio_m + " - ");
+        $(this).append(hora_final_m);
+    })
+}

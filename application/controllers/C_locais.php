@@ -33,17 +33,22 @@ class C_locais extends CI_Controller {
         );
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('nome','Nome do Local','required');
+        $this->form_validation->set_rules('nome','Nome do Local','required|is_unique[local.nome]');
         $this->form_validation->set_rules('limitador','Limite','required|integer');
-
+        
+       
         if(!$this->form_validation->run() ==FALSE){
-            $this->load->model('M_locais');
-            $data = $this->M_locais->cadastro($local);
-            
-            if($data){
-                $this->session->set_flashdata('message-success','Cadastrado com sucesso');
+             if($dias != "" && $local['limite'] != "0"){
+                $this->load->model('M_locais');
+                $data = $this->M_locais->cadastro($local);
+                
+                if($data){
+                    $this->session->set_flashdata('message-success','Cadastrado com sucesso');
+                }else{
+                    $this->session->set_flashdata('message','Houve algum erro ao cadastrar');
+                }
             }else{
-                $this->session->set_flashdata('message','Houve algum erro ao cadastrar');
+                $this->session->set_flashdata('message','Limite ou Dias não foram selecionados');
             }
         }
 

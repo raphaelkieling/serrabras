@@ -1,9 +1,3 @@
-// var hoje = moment('2017-04-28');
-// var talvez = moment('2017-04-27');
-
-// var diff = hoje.diff(talvez,"days");
-
-// alert(diff);
 moment.locale('pt-br');
 
 function convertData(data){

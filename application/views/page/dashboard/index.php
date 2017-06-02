@@ -43,7 +43,7 @@
               <tr>
                 <td><a href="<?=base_url()?>agendados/pedidoinfo/<?=$agenda['idAgenda']?>"><?=$agenda['nome']?></a></td>
                 <td><?=dataConvertView($agenda['data'])?></td>
-                <td><?=$agenda['hora_entrega']?></td>
+                <td><span class="hora_view"><?=$agenda['hora_entrega']?></span></td>
                 <td><?=$agenda['nmr_pacotes']?></td>
                 <td><span class="label label-<?=$label?>"><?=$text?></span></td>
                 <td>
@@ -67,5 +67,9 @@
     </div> <!-- /container -->
     <?php }?>
     <script src="<?=base_url()?>assets/js/notificacao.js"></script>
+    <script src="<?=base_url()?>assets/js/converter.js"></script>
+    <script>
+        adicionaDuasHoras();
+    </script>
   </body>
 </html>
